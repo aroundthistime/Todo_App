@@ -5,10 +5,8 @@ import {preventQuoteTill24Hours} from '../modules/quotePrevention';
 import {RootState} from '../modules/root';
 import {isBeforeCurrent} from '../utils/dates';
 
-const quotePreventDeadlineSelector = (state: RootState) => {
-  console.log('ㅇㅇ', state.quotePrevention);
-  return state.quotePrevention.quotePreventedUntil;
-};
+const quotePreventDeadlineSelector = (state: RootState) =>
+  state.quotePrevention.quotePreventedUntil;
 
 const showQuoteSelector = createSelector(
   quotePreventDeadlineSelector,

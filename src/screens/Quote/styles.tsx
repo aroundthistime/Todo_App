@@ -4,10 +4,10 @@ import ViewContainer from '../../components/Layout/ViewContainer';
 
 export const QuoteBackground = styled(ViewContainer)`
   background-color: lightcoral;
-  padding-right: 20;
-  padding-left: 20;
-  padding-top: 20;
-  padding-bottom: 20;
+  padding-right: ${props => props.theme.layout.padding.horizontal};
+  padding-left: ${props => props.theme.layout.padding.horizontal};
+  padding-top: ${props => props.theme.layout.padding.vertical};
+  padding-bottom: ${props => props.theme.layout.padding.vertical};
 `;
 
 export const QuoteMain = styled.View`
@@ -16,14 +16,14 @@ export const QuoteMain = styled.View`
 `;
 
 export const QuoteContent = styled.Text`
-  font-size: 25;
+  font-size: ${props => props.theme.font.size.large};
   font-weight: bold;
 `;
 
 export const QuoteAuthor = styled.Text`
-  font-size: 18;
+  font-size: ${props => props.theme.font.size.default};
   align-self: flex-end;
-  margin-top: 50;
+  margin-top: 50px;
 `;
 
 export const QuoteFooter = styled.View`
@@ -46,15 +46,15 @@ export const QuoteCloseButton = (props: QuoteCloseButtonProps) => {
 };
 
 QuoteCloseButton.Container = styled.TouchableOpacity`
-  width: 200;
-  padding-top: 15;
-  padding-bottom: 15;
+  width: 200px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   justify-content: center;
   align-items: center;
 `;
 
 QuoteCloseButton.Text = styled.Text`
   color: white;
-  font-size: 16;
+  font-size: ${props => props.theme.font.size.small};
   font-weight: bold;
 `;

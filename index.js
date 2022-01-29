@@ -18,6 +18,8 @@ import {configureStore} from '@reduxjs/toolkit';
 import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {QueryClient, QueryClientProvider} from 'react-query';
+import {ThemeProvider} from '@emotion/react';
+import theme from './theme';
 
 const persistConfig = {
   key: 'root',
@@ -45,7 +47,9 @@ const RNRedux = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
       </QueryClientProvider>
     </PersistGate>
   </Provider>
