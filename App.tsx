@@ -20,7 +20,7 @@ const App = () => {
   const {showQuote, closeQuote, closeQuoteFor24Hours} = useQuote();
   return (
     <SafeAreaView style={{flex: 1}}>
-      {showQuote ? (
+      {true ? (
         <Suspense fallback={<Loader />}>
           <Quote
             closeQuote={closeQuote}
