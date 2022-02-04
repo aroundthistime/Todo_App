@@ -7,8 +7,17 @@ import TodosScreen from '../screens/Todos/TodosScreen';
 const Stack = createStackNavigator();
 
 const RootNavigation = () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Drawer" component={DrawerNavigation} />
+  <Stack.Navigator
+    screenOptions={{
+      title: '',
+    }}>
+    <Stack.Screen
+      name="Drawer"
+      component={DrawerNavigation}
+      options={{
+        headerShown: false,
+      }}
+    />
     <Stack.Screen name="Todo" component={TodosScreen} />
     <Stack.Screen name="TodoForm" component={TodoFormScreen} />
   </Stack.Navigator>
