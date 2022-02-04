@@ -10,7 +10,7 @@
 
 import React, {Suspense} from 'react';
 import {SafeAreaView} from 'react-native';
-import Loader from './src/components/Loader';
+import Loader from './src/components/Loader/Loader';
 import {useQuote} from './src/hooks/useQuote';
 import RootNavigation from './src/navigations/RootNavigation';
 import QuoteScreen from './src/screens/Quote/QuoteScreen';

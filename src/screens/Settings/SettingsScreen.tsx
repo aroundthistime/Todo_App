@@ -1,12 +1,12 @@
 import React from 'react';
 import {Text} from 'react-native';
-import ViewContainer from '../../components/Layout/ViewContainer/ViewContainer';
+import DrawerScreenContainer from '../../components/Layout/DrawerScreenContainer/DrawerScreenContainer';
 
 const SettingsScreen = () => {
   return (
-    <ViewContainer>
+    <DrawerScreenContainer>
       <Text>환경설정</Text>
-    </ViewContainer>
+    </DrawerScreenContainer>
   );
 };
 

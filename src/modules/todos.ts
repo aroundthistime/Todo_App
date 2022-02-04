@@ -1,15 +1,5 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
-
-export type ImportanceLevel = 'high' | 'medium' | 'low';
-
-interface Todo {
-  id: number;
-  title: string;
-  content: string;
-  cleared: boolean;
-  deadline: string;
-  importanceLevel: ImportanceLevel;
-}
+import {Todo} from '../@types/Todo';
 
 type TodosState = Todo[];
 
@@ -69,5 +59,7 @@ const todosSlice = createSlice({
 });
 
 export const {addTodo, removeTodoById, modifyTodo} = todosSlice.actions;
+
+export const todosSelector = state => (state.todos ? state.todos : []);
 
 export default todosSlice.reducer;

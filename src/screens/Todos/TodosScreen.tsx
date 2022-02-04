@@ -1,11 +1,17 @@
 import React from 'react';
-import {Text} from 'react-native';
 import DrawerScreenContainer from '../../components/Layout/DrawerScreenContainer/DrawerScreenContainer';
+import TodosList from '../../components/TodosList/TodosList';
+import {TodosBgImage, TodosContainer} from './styles';
+import {useTodosScreen} from './useTodosScreen';
 
-const TodosScreen = ({navigation}) => {
+const TodosScreen = () => {
+  const {drawerScreenContainerStyle, todos} = useTodosScreen();
   return (
-    <DrawerScreenContainer>
-      <Text>Todos</Text>
+    <DrawerScreenContainer style={drawerScreenContainerStyle}>
+      <TodosBgImage />
+      <TodosContainer>
+        <TodosList todos={todos} />
+      </TodosContainer>
     </DrawerScreenContainer>
   );
 };
