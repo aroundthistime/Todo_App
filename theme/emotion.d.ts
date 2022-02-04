@@ -4,6 +4,7 @@ import {ColorTheme} from './color';
 import {FontTheme} from './font';
 import {IconTheme} from './icon';
 import {LayoutTheme} from './layout';
+import {ShadowTheme} from './shadow';
 
 declare module '@emotion/react' {
   export interface Theme {
@@ -12,5 +13,6 @@ declare module '@emotion/react' {
     icon: IconTheme;
     color: ColorTheme;
     border: BorderTheme;
+    shadow: ShadowTheme;
   }
 }
