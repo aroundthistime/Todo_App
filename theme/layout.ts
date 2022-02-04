@@ -11,7 +11,7 @@ const layout: LayoutTheme = {
   height: Dimensions.get('window').height,
   padding: {
     horizontal: '20px',
-    viertical: '20px',
+    vertical: '20px',
   },
 };
 
