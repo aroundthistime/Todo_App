@@ -26,5 +26,5 @@ export const TodosContainer = styled.View`
   padding-bottom: ${props => props.theme.layout.padding.vertical};
   padding-right: ${props => props.theme.layout.padding.horizontal};
   padding-left: ${props => props.theme.layout.padding.horizontal};
-  ${props => props.theme.shadow.default}
+  ${props => props.theme.shadow.default};
 `;
