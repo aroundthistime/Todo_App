@@ -1,7 +1,7 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import ViewContainer from './ViewContainer';
+import ViewContainer from '../ViewContainer/ViewContainer';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const DrawerScreenContainer: React.FC = ({children}) => {

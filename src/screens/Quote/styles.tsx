@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/native';
-import ViewContainer from '../../components/Layout/ViewContainer';
+import ViewContainer from '../../components/Layout/ViewContainer/ViewContainer';
 
 export const QuoteBackground = styled(ViewContainer)`
   background-color: lightcoral;

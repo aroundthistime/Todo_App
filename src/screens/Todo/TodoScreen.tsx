@@ -1,5 +1,5 @@
 import React from 'react';
-import ViewContainer from '../../components/Layout/ViewContainer';
+import ViewContainer from '../../components/Layout/ViewContainer/ViewContainer';
 import {Text} from 'react-native';
 
 const TodoScreen = () => {
