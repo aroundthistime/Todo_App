@@ -20,9 +20,11 @@ export const TodosBgImage = () => {
 
 export const TodosContainer = styled.View`
   width: 100%;
+  background-color: white;
+  border-radius: ${props => props.theme.layout.borderRadius};
   padding-top: ${props => props.theme.layout.padding.vertical};
   padding-bottom: ${props => props.theme.layout.padding.vertical};
   padding-right: ${props => props.theme.layout.padding.horizontal};
   padding-left: ${props => props.theme.layout.padding.horizontal};
-  background-color: yellow;
+  ${props => props.theme.shadow.default}
 `;
