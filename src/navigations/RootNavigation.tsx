@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import DrawerNavigation from './DrawerNavigation';
 import TodoFormScreen from '../screens/TodoForm/TodoFormScreen';
-import TodosScreen from '../screens/Todos/TodosScreen';
+import TodoScreen from '../screens/Todo/TodoScreen';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +18,7 @@ const RootNavigation = () => (
         headerShown: false,
       }}
     />
-    <Stack.Screen name="Todo" component={TodosScreen} />
+    <Stack.Screen name="Todo" component={TodoScreen} />
     <Stack.Screen name="TodoForm" component={TodoFormScreen} />
   </Stack.Navigator>
 );
