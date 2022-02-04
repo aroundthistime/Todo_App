@@ -1,12 +1,20 @@
 import React from 'react';
 import {Text} from 'react-native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import DrawerScreenContainer from '../../components/Layout/DrawerScreenContainer';
 import ViewContainer from '../../components/Layout/ViewContainer';
 
-const TodosScreen = () => {
+const TodosScreen = ({navigation}) => {
   return (
-    <ViewContainer>
-      <Text>TOdos</Text>
-    </ViewContainer>
+    <DrawerScreenContainer>
+      <Text>Todos</Text>
+    </DrawerScreenContainer>
+    // <ViewContainer>
+    //   <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+    //     <Text>안뇽</Text>
+    //   </TouchableOpacity>
+    //   <Text>TOdos</Text>
+    // </ViewContainer>
   );
 };
 
