@@ -9,12 +9,11 @@
  */
 
 import React, {Suspense} from 'react';
-import {SafeAreaView, Text} from 'react-native';
-import 'react-native-gesture-handler';
-import ViewContainer from './src/components/Layout/ViewContainer';
+import {SafeAreaView} from 'react-native';
 import Loader from './src/components/Loader';
 import {useQuote} from './src/hooks/useQuote';
-import Quote from './src/screens/Quote/Quote';
+import RootNavigation from './src/navigations/RootNavigation';
+import QuoteScreen from './src/screens/Quote/QuoteScreen';
 
 const App = () => {
   const {showQuote, closeQuote, closeQuoteFor24Hours} = useQuote();
@@ -22,15 +21,13 @@ const App = () => {
     <SafeAreaView style={{flex: 1}}>
       {showQuote ? (
         <Suspense fallback={<Loader />}>
-          <Quote
+          <QuoteScreen
             closeQuote={closeQuote}
             closeQuoteFor24Hours={closeQuoteFor24Hours}
           />
         </Suspense>
       ) : (
-        <ViewContainer>
-          <Text>로그인됐지롱</Text>
-        </ViewContainer>
+        <RootNavigation />
       )}
     </SafeAreaView>
   );

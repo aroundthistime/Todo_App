@@ -14,7 +14,7 @@ interface QuoteProps {
   closeQuoteFor24Hours: Function;
 }
 
-const Quote = (props: QuoteProps): JSX.Element => {
+const QuoteScreen = (props: QuoteProps): JSX.Element => {
   const {data} = useQuoteQuery();
   return (
     <QuoteBackground>
@@ -33,4 +33,4 @@ const Quote = (props: QuoteProps): JSX.Element => {
   );
 };
 
-export default React.memo(Quote);
+export default React.memo(QuoteScreen);

@@ -19,7 +19,10 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {ThemeProvider} from '@emotion/react';
+import 'react-native-gesture-handler';
+
 import theme from './theme';
+import {NavigationContainer} from '@react-navigation/native';
 
 const persistConfig = {
   key: 'root',
@@ -48,7 +51,9 @@ const RNRedux = () => (
     <PersistGate loading={null} persistor={persistor}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <App />
+          <NavigationContainer>
+            <App />
+          </NavigationContainer>
         </ThemeProvider>
       </QueryClientProvider>
     </PersistGate>
