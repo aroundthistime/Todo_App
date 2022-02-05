@@ -45,7 +45,15 @@ export const useTodosScreen = () => {
       content: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
       cleared: false,
       deadline: new Date().getTime(),
-      importanceLevel: 'high',
+      importanceLevel: 'medium',
+    },
+    {
+      id: 2,
+      title: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
+      content: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
+      cleared: false,
+      deadline: new Date().getTime(),
+      importanceLevel: 'low',
     },
   ];
 
