@@ -11,11 +11,6 @@ type TodosListProps = {
 };
 
 export const TodosList = (props: TodosListProps) => {
-  console.log(
-    css`
-      ${theme.border.lightGray}
-    `,
-  );
   return (
     <FlatList
       data={props.todos}
@@ -24,6 +19,15 @@ export const TodosList = (props: TodosListProps) => {
     />
   );
 };
+
+TodosList.Todo = ({todo}: {todo: Todo}) => (
+  <TouchableOpacity>
+    <ListItemContainer>
+      <TodoTitleText>{todo.title}</TodoTitleText>
+      <TodoImportantLevelIndicator />
+    </ListItemContainer>
+  </TouchableOpacity>
+);
 
 const TodoTitleText = styled.Text`
   font-size: ${props => props.theme.font.size.default.toString()}px;
@@ -38,12 +42,3 @@ const TodoImportantLevelIndicator = styled.View`
   background-color: red;
   margin-left: 30px;
 `;
-
-TodosList.Todo = ({todo}: {todo: Todo}) => (
-  <TouchableOpacity>
-    <ListItemContainer>
-      <TodoTitleText>{todo.title}</TodoTitleText>
-      <TodoImportantLevelIndicator />
-    </ListItemContainer>
-  </TouchableOpacity>
-);
