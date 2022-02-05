@@ -40,5 +40,5 @@ const TodoImportantLevelIndicator = styled.View`
   border-radius: ${props =>
     (props.theme.layout.indicatorSize / 2).toString()}px;
   background-color: red;
-  margin-left: 30px;
+  margin-left: ${props => props.theme.layout.columnGap.toString()}px;
 `;

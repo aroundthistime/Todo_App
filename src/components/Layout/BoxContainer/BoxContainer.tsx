@@ -19,9 +19,14 @@ const Container = styled.View`
 `;
 
 BoxContainer.Header = styled.View`
+  position: relative;
   padding-bottom: 10px;
   margin-bottom: 10px;
   ${props => props.theme.border.lightGray('bottom')}
+`;
+
+BoxContainer.HeaderRight = styled.View`
+  margin-left: ${props => props.theme.layout.columnGap.toString()}px;
 `;
 
 BoxContainer.Title = styled.Text`
