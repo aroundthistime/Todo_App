@@ -19,6 +19,7 @@ const Container = styled.View`
 `;
 
 BoxContainer.Header = styled.View`
+  padding-bottom: 10px;
   margin-bottom: 10px;
   ${props => props.theme.border.lightGray('bottom')}
 `;

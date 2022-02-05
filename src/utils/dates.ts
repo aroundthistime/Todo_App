@@ -1,3 +1,13 @@
+const DAY = {
+  0: '월',
+  1: '화',
+  2: '수',
+  3: '목',
+  4: '금',
+  5: '토',
+  6: '일',
+};
+
 export const datesAreOnSameDay = (date1: Date, date2: Date): boolean =>
   date1.getFullYear() === date2.getFullYear() &&
   date1.getMonth() === date2.getMonth() &&
@@ -19,3 +29,11 @@ export const isBeforeCurrent = (date: Date): boolean =>
 
 export const isBefore = (date1: Date, date2: Date): boolean =>
   date1.getTime() < date2.getTime();
+
+export const getFullDateStr = (dateObj: Date): string => {
+  const year = dateObj.getFullYear();
+  const month = dateObj.getMonth() + 1;
+  const date = dateObj.getDate();
+  const day = DAY[dateObj.getDay()];
+  return `${year}년 ${month}월 ${date}일 (${day})`;
+};
