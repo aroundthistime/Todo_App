@@ -4,6 +4,7 @@ import {View} from 'react-native';
 import {Todo} from '../../@types/Todo';
 import {getFullDateStr} from '../../utils/dates';
 import BoxContainer from '../Layout/BoxContainer/BoxContainer';
+import PercentageCircle from '../PercentageCircle/PercentageCircle';
 import {TodosList} from './styles';
 
 type Props = {
@@ -24,7 +25,8 @@ const Todos = (props: Props) => {
           <BoxContainer.SubTitle>5 / 7</BoxContainer.SubTitle>
         </View>
         <BoxContainer.HeaderRight>
-          <View style={{width: 40, height: 40, backgroundColor: 'orange'}} />
+          <PercentageCircle percentage={70} />
+          {/* <View style={{width: 40, height: 40, backgroundColor: 'orange'}} /> */}
         </BoxContainer.HeaderRight>
       </BoxContainer.Header>
       <TodosList todos={props.todos} />
