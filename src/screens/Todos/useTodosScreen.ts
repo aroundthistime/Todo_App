@@ -4,7 +4,6 @@ import {useSelector} from 'react-redux';
 import {StyleObject} from '../../@types/StyleObject';
 import {Todo} from '../../@types/Todo';
 import {todosSelector} from '../../modules/todos';
-import {extractNumbersFromString} from '../../utils/math';
 import {
   filterTodosForToday,
   sortTodosByImportanceLevel,
@@ -26,15 +25,15 @@ export const useTodosScreen = () => {
     },
   } = useTheme();
   const drawerScreenContainerStyle: StyleObject = {
-    paddingHorizontal: extractNumbersFromString(paddingHorizontal), //styleObject에서는 단위 없어야됨
-    paddingVertical: extractNumbersFromString(paddingVertical),
+    paddingHorizontal,
+    paddingVertical,
   };
 
   // const todos: Todo[] = useSelector(todosForToday);
   const todos: Todo[] = [
     {
       id: 1,
-      title: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
+      title: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
       content: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
       cleared: false,
       deadline: new Date().getTime(),
@@ -42,7 +41,7 @@ export const useTodosScreen = () => {
     },
     {
       id: 2,
-      title: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
+      title: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
       content: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
       cleared: false,
       deadline: new Date().getTime(),

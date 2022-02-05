@@ -6,8 +6,8 @@ import {useTheme} from '@emotion/react';
 
 const DrawerIconContainer = styled.TouchableOpacity`
   position: absolute;
-  top: ${props => props.theme.layout.padding.vertical};
-  right: ${props => props.theme.layout.padding.horizontal};
+  top: ${props => props.theme.layout.padding.vertical.toString()}px;
+  right: ${props => props.theme.layout.padding.horizontal.toString()}px;
 `;
 
 export const DrawerIcon = () => {

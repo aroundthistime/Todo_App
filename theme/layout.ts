@@ -3,18 +3,20 @@ import {Dimensions} from 'react-native';
 export interface LayoutTheme {
   width: number;
   height: number;
-  padding: {[key in string]: string};
-  borderRadius: string;
+  padding: {[key in string]: number};
+  borderRadius: number;
+  indicatorSize: number;
 }
 
 const layout: LayoutTheme = {
   width: Dimensions.get('window').width,
   height: Dimensions.get('window').height,
   padding: {
-    horizontal: '20px',
-    vertical: '20px',
+    horizontal: 20,
+    vertical: 20,
   },
-  borderRadius: '10px',
+  borderRadius: 10,
+  indicatorSize: 16,
 };
 
 export default layout;

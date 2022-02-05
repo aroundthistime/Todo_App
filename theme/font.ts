@@ -1,12 +1,12 @@
 export interface FontTheme {
-  size: {[key in string]: string};
+  size: {[key in string]: number};
 }
 
 const font: FontTheme = {
   size: {
-    default: '18px',
-    large: '25px',
-    small: '16px',
+    default: 18,
+    large: 25,
+    small: 16,
   },
 };
 

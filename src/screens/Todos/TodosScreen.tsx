@@ -1,7 +1,7 @@
 import React from 'react';
 import DrawerScreenContainer from '../../components/Layout/DrawerScreenContainer/DrawerScreenContainer';
-import TodosList from '../../components/TodosList/TodosList';
-import {TodosBgImage, TodosContainer} from './styles';
+import Todos from '../../components/Todos/Todos';
+import {TodosBgImage} from './styles';
 import {useTodosScreen} from './useTodosScreen';
 
 const TodosScreen = () => {
@@ -9,9 +9,7 @@ const TodosScreen = () => {
   return (
     <DrawerScreenContainer style={drawerScreenContainerStyle}>
       <TodosBgImage />
-      <TodosContainer>
-        <TodosList todos={todos} />
-      </TodosContainer>
+      <Todos date={new Date()} todos={todos} />
     </DrawerScreenContainer>
   );
 };

@@ -4,6 +4,7 @@ import TodosScreen from '../screens/Todos/TodosScreen';
 import SettingsScreen from '../screens/Settings/SettingsScreen';
 import CalenderScreen from '../screens/Calender/CalenderScreen';
 import {Text} from 'react-native';
+import color from '../../theme/color';
 
 const Drawer = createDrawerNavigator();
 
@@ -12,6 +13,7 @@ const DrawerNavigation = () => (
     screenOptions={{
       drawerPosition: 'right',
       headerShown: false,
+      drawerActiveBackgroundColor: color.lightPink,
     }}>
     <Drawer.Screen
       name="Todos"
