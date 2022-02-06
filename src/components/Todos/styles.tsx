@@ -9,6 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import Button from '../Button/DefaultButton/Button';
 import {clearTodo, removeTodo, restoreTodo} from '../../modules/todos';
+import routes from '../../routes';
 
 type TodosListProps = {
   todos: Todo[];
@@ -44,7 +45,7 @@ const TodoItem = React.memo(({todo}: {todo: Todo}) => {
   return (
     <TouchableOpacity
       activeOpacity={1}
-      onPress={() => navigation.navigate('Todo', {todoId: todo.id})}>
+      onPress={() => navigation.navigate(routes.Todo, {todoId: todo.id})}>
       <ListItemContainer>
         <TodoTitleText
           style={css`
@@ -103,30 +104,28 @@ const HiddenButtons = React.memo(
             </Button.Container>
           </Button>
         ) : (
-          <>
-            <Button onPress={() => dispatch(clearTodo(todoId))}>
-              <Button.Container
-                style={css`
-                  width: ${width.toString()}px;
-                  height: ${height.toString()}px;
-                  background-color: ${approveBtnColor};
-                  margin-right: 5px;
-                `}>
-                <Button.Text>성공</Button.Text>
-              </Button.Container>
-            </Button>
-            <Button onPress={() => dispatch(removeTodo(todoId))}>
-              <Button.Container
-                style={css`
-                  width: ${width.toString()}px;
-                  height: ${height.toString()}px;
-                  background-color: ${cancelBtnColor};
-                `}>
-                <Button.Text>삭제</Button.Text>
-              </Button.Container>
-            </Button>
-          </>
+          <Button onPress={() => dispatch(clearTodo(todoId))}>
+            <Button.Container
+              style={css`
+                width: ${width.toString()}px;
+                height: ${height.toString()}px;
+                background-color: ${approveBtnColor};
+              `}>
+              <Button.Text>성공</Button.Text>
+            </Button.Container>
+          </Button>
         )}
+        <Button onPress={() => dispatch(removeTodo(todoId))}>
+          <Button.Container
+            style={css`
+              width: ${width.toString()}px;
+              height: ${height.toString()}px;
+              background-color: ${cancelBtnColor};
+              margin-left: 5px;
+            `}>
+            <Button.Text>삭제</Button.Text>
+          </Button.Container>
+        </Button>
       </View>
     );
   },

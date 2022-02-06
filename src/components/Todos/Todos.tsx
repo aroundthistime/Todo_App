@@ -1,4 +1,5 @@
 import {css} from '@emotion/native';
+import {useTheme} from '@emotion/react';
 import React from 'react';
 import {View} from 'react-native';
 import {Todo} from '../../@types/Todo';
@@ -15,10 +16,13 @@ type Props = {
 
 const Todos = (props: Props) => {
   const clearedTodosCount = countClearedTodos(props.todos);
+  const {
+    layout: {height},
+  } = useTheme();
   return (
     <BoxContainer
       style={css`
-        height: 600px;
+        height: ${(height * 0.6).toString()};
       `}>
       <BoxContainer.Header
         style={css`

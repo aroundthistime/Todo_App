@@ -3,8 +3,15 @@ import {createStackNavigator} from '@react-navigation/stack';
 import DrawerNavigation from './DrawerNavigation';
 import TodoFormScreen from '../screens/TodoForm/TodoFormScreen';
 import TodoScreen from '../screens/Todo/TodoScreen';
+import routes from '../routes';
 
 const Stack = createStackNavigator();
+
+export type RootStackParamList = {
+  Drawer: undefined;
+  Todo: {todoId: number};
+  TodoForm: {todoId: number};
+};
 
 const RootNavigation = () => (
   <Stack.Navigator
@@ -18,8 +25,8 @@ const RootNavigation = () => (
         headerShown: false,
       }}
     />
-    <Stack.Screen name="Todo" component={TodoScreen} />
-    <Stack.Screen name="TodoForm" component={TodoFormScreen} />
+    <Stack.Screen name={routes.Todo} component={TodoScreen} />
+    <Stack.Screen name={routes.TodoForm} component={TodoFormScreen} />
   </Stack.Navigator>
 );
 
