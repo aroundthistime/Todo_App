@@ -1,6 +1,6 @@
+import {ReactNativeStyle} from '@emotion/native';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {StyleObject} from '../../@types/StyleObject';
 
 /** React Native Percentage Circle 참고
  ** @github  https://github.com/JackPu/react-native-percentage-circle
@@ -51,7 +51,7 @@ type Props = {
   radius: number;
   percent: number;
   borderWidth?: number;
-  textStyle?: StyleObject;
+  textStyle?: ReactNativeStyle;
   children?: React.ReactNode;
 };
 

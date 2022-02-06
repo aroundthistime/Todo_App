@@ -31,6 +31,7 @@ export const TodosList = React.memo((props: TodosListProps) => {
       keyExtractor={todo => todo.id.toString()}
       rightOpenValue={-(buttonWidth * 2 + columnGap)}
       disableRightSwipe={true}
+      showsVerticalScrollIndicator={false}
     />
   );
 });

@@ -1,11 +1,14 @@
 import React from 'react';
-import styled from '@emotion/native';
+import styled, {ReactNativeStyle} from '@emotion/native';
 
 type Props = {
   children?: React.ReactNode;
+  style?: ReactNativeStyle;
 };
 
-const BoxContainer = (props: Props) => <Container>{props.children}</Container>;
+const BoxContainer = ({children, style = {}}: Props) => (
+  <Container style={style}>{children}</Container>
+);
 
 const Container = styled.View`
   width: 100%;

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, {css} from '@emotion/native';
-import {StyleObject} from '../../../@types/StyleObject';
 import {TouchableOpacity} from 'react-native';
 
 type Props = {

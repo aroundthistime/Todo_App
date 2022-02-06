@@ -16,7 +16,10 @@ type Props = {
 const Todos = (props: Props) => {
   const clearedTodosCount = countClearedTodos(props.todos);
   return (
-    <BoxContainer>
+    <BoxContainer
+      style={css`
+        height: 600px;
+      `}>
       <BoxContainer.Header
         style={css`
           flex-direction: row;
