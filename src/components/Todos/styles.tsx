@@ -8,7 +8,7 @@ import ListItemContainer from '../Layout/ListItemContainer/ListItemContainer';
 import {useNavigation} from '@react-navigation/native';
 import {useDispatch} from 'react-redux';
 import Button from '../Button/DefaultButton/Button';
-import {clearTodo, removeTodo} from '../../modules/todos';
+import {clearTodo, removeTodo, restoreTodo} from '../../modules/todos';
 
 type TodosListProps = {
   todos: Todo[];
@@ -90,7 +90,7 @@ const HiddenButtons = ({todoId, cleared}: TodoItemHiddenButtonsProps) => {
         flex: 1;
       `}>
       {cleared ? (
-        <Button onPress={() => dispatch(clearTodo(todoId))}>
+        <Button onPress={() => dispatch(restoreTodo(todoId))}>
           <Button.Container
             style={css`
               width: ${width.toString()}px;

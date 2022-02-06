@@ -17,3 +17,7 @@ export const filterTodosByDate = (todos: Todo[], date: Date): Todo[] =>
 
 export const filterTodosForToday = (todos: Todo[]) =>
   filterTodosByDate(todos, new Date());
+
+export const countClearedTodos = (todos: Todo[]): number => {
+  return todos.filter(todo => todo.cleared).length;
+};

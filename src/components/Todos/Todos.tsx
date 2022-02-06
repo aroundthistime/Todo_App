@@ -3,6 +3,7 @@ import React from 'react';
 import {View} from 'react-native';
 import {Todo} from '../../@types/Todo';
 import {getFullDateStr} from '../../utils/dates';
+import {countClearedTodos} from '../../utils/todoHandlers';
 import BoxContainer from '../Layout/BoxContainer/BoxContainer';
 import PercentageCircle from '../PercentageCircle/PercentageCircle';
 import {TodosList} from './styles';
@@ -13,6 +14,7 @@ type Props = {
 };
 
 const Todos = (props: Props) => {
+  const clearedTodosCount = countClearedTodos(props.todos);
   return (
     <BoxContainer>
       <BoxContainer.Header
@@ -22,10 +24,16 @@ const Todos = (props: Props) => {
         `}>
         <View style={{flex: 1}}>
           <BoxContainer.Title>{getFullDateStr(props.date)}</BoxContainer.Title>
-          <BoxContainer.SubTitle>5 / 7</BoxContainer.SubTitle>
+          <BoxContainer.SubTitle>
+            {clearedTodosCount} / {props.todos.length}
+          </BoxContainer.SubTitle>
         </View>
         <BoxContainer.HeaderRight>
-          <PercentageCircle percentage={70} />
+          <PercentageCircle
+            percentage={parseInt(
+              (clearedTodosCount / props.todos.length) * 100,
+            )}
+          />
         </BoxContainer.HeaderRight>
       </BoxContainer.Header>
       <TodosList todos={props.todos} />
