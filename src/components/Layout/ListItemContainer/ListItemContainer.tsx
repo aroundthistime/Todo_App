@@ -8,6 +8,7 @@ const ListItemContainer = styled.View`
   align-items: center;
   padding-top: 10px;
   padding-bottom: 10px;
+  background-color: white;
 `;
 
 export default ListItemContainer;

@@ -8,13 +8,22 @@ const initialState: TodosState = [];
 export const clearTodo = createAsyncThunk(
   'todos/clearTodo',
   (todoId: number, thunkAPI) => {
-    return {
-      dispatch: thunkAPI.dispatch,
-      updatedFields: {
-        id: todoId,
-        cleared: true,
-      },
+    const updatedFields = {
+      id: todoId,
+      cleared: true,
     };
+    thunkAPI.dispatch(modifyTodo(updatedFields));
+  },
+);
+
+export const restoreTodo = createAsyncThunk(
+  'todos/restoreTodo',
+  (todoId: number, thunkAPI) => {
+    const updatedFields = {
+      id: todoId,
+      cleared: false,
+    };
+    thunkAPI.dispatch(modifyTodo(updatedFields));
   },
 );
 
@@ -29,7 +38,7 @@ const todosSlice = createSlice({
         ...action.payload,
       });
     },
-    removeTodoById(state, action: PayloadAction<number>) {
+    removeTodo(state, action: PayloadAction<number>) {
       const index = state.findIndex((todo: Todo) => todo.id === action.payload);
       if (index > -1) {
         state.splice(index, 1);
@@ -50,15 +59,9 @@ const todosSlice = createSlice({
       }
     },
   },
-  extraReducers: builder => {
-    builder.addCase(clearTodo.fulfilled, (state, action) => {
-      const {dispatch, updatedFields} = action.payload;
-      dispatch(modifyTodo(updatedFields));
-    });
-  },
 });
 
-export const {addTodo, removeTodoById, modifyTodo} = todosSlice.actions;
+export const {addTodo, removeTodo, modifyTodo} = todosSlice.actions;
 
 export const todosSelector = state => (state.todos ? state.todos : []);
 

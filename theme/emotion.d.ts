@@ -1,5 +1,6 @@
 import '@emotion/react';
 import {BorderTheme} from './border';
+import {ButtonTheme} from './button';
 import {ColorTheme} from './color';
 import {FontTheme} from './font';
 import {IconTheme} from './icon';
@@ -14,5 +15,6 @@ declare module '@emotion/react' {
     color: ColorTheme;
     border: BorderTheme;
     shadow: ShadowTheme;
+    button: ButtonTheme;
   }
 }
