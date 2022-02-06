@@ -43,7 +43,7 @@ export const useTodosScreen = () => {
       id: 2,
       title: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
       content: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
-      cleared: false,
+      cleared: true,
       deadline: new Date().getTime(),
       importanceLevel: 'medium',
     },

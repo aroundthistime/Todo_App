@@ -26,7 +26,6 @@ const Todos = (props: Props) => {
         </View>
         <BoxContainer.HeaderRight>
           <PercentageCircle percentage={70} />
-          {/* <View style={{width: 40, height: 40, backgroundColor: 'orange'}} /> */}
         </BoxContainer.HeaderRight>
       </BoxContainer.Header>
       <TodosList todos={props.todos} />

@@ -32,8 +32,16 @@ TodosList.Todo = ({todo}: {todo: Todo}) => {
   `;
   return (
     <TouchableOpacity>
-      <ListItemContainer>
-        <TodoTitleText>{todo.title}</TodoTitleText>
+      <ListItemContainer
+        style={css`
+          opacity: ${todo.cleared ? '0.3' : '1'};
+        `}>
+        <TodoTitleText
+          style={css`
+            text-decoration: ${todo.cleared ? 'line-through' : 'none'};
+          `}>
+          {todo.title}
+        </TodoTitleText>
         <TodoImportantLevelIndicator style={bgColorStyle} />
       </ListItemContainer>
     </TouchableOpacity>
