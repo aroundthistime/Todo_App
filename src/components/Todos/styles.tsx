@@ -14,7 +14,7 @@ type TodosListProps = {
   todos: Todo[];
 };
 
-export const TodosList = (props: TodosListProps) => {
+export const TodosList = React.memo((props: TodosListProps) => {
   const {
     button: {
       default: {width: buttonWidth},
@@ -33,9 +33,9 @@ export const TodosList = (props: TodosListProps) => {
       disableRightSwipe={true}
     />
   );
-};
+});
 
-const TodoItem = ({todo}: {todo: Todo}) => {
+const TodoItem = React.memo(({todo}: {todo: Todo}) => {
   const navigation = useNavigation();
   const {
     color: {coral, yellow, green},
@@ -65,69 +65,71 @@ const TodoItem = ({todo}: {todo: Todo}) => {
       </ListItemContainer>
     </TouchableOpacity>
   );
-};
+});
 
 type TodoItemHiddenButtonsProps = {
   todoId: number;
   cleared: boolean;
 };
 
-const HiddenButtons = ({todoId, cleared}: TodoItemHiddenButtonsProps) => {
-  const dispatch = useDispatch();
-  const {
-    button: {
-      default: {width, height},
-      color: {approveBtnColor, cancelBtnColor, restoreBtnColor},
-    },
-  } = useTheme();
-  return (
-    <View
-      style={css`
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        align-items: center;
-        flex: 1;
-      `}>
-      {cleared ? (
-        <Button onPress={() => dispatch(restoreTodo(todoId))}>
-          <Button.Container
-            style={css`
-              width: ${width.toString()}px;
-              height: ${height.toString()}px;
-              background-color: ${restoreBtnColor};
-            `}>
-            <Button.Text>복원</Button.Text>
-          </Button.Container>
-        </Button>
-      ) : (
-        <>
-          <Button onPress={() => dispatch(clearTodo(todoId))}>
+const HiddenButtons = React.memo(
+  ({todoId, cleared}: TodoItemHiddenButtonsProps) => {
+    const dispatch = useDispatch();
+    const {
+      button: {
+        default: {width, height},
+        color: {approveBtnColor, cancelBtnColor, restoreBtnColor},
+      },
+    } = useTheme();
+    return (
+      <View
+        style={css`
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+          flex: 1;
+        `}>
+        {cleared ? (
+          <Button onPress={() => dispatch(restoreTodo(todoId))}>
             <Button.Container
               style={css`
                 width: ${width.toString()}px;
                 height: ${height.toString()}px;
-                background-color: ${approveBtnColor};
-                margin-right: 5px;
+                background-color: ${restoreBtnColor};
               `}>
-              <Button.Text>성공</Button.Text>
+              <Button.Text>복원</Button.Text>
             </Button.Container>
           </Button>
-          <Button onPress={() => dispatch(removeTodo(todoId))}>
-            <Button.Container
-              style={css`
-                width: ${width.toString()}px;
-                height: ${height.toString()}px;
-                background-color: ${cancelBtnColor};
-              `}>
-              <Button.Text>삭제</Button.Text>
-            </Button.Container>
-          </Button>
-        </>
-      )}
-    </View>
-  );
-};
+        ) : (
+          <>
+            <Button onPress={() => dispatch(clearTodo(todoId))}>
+              <Button.Container
+                style={css`
+                  width: ${width.toString()}px;
+                  height: ${height.toString()}px;
+                  background-color: ${approveBtnColor};
+                  margin-right: 5px;
+                `}>
+                <Button.Text>성공</Button.Text>
+              </Button.Container>
+            </Button>
+            <Button onPress={() => dispatch(removeTodo(todoId))}>
+              <Button.Container
+                style={css`
+                  width: ${width.toString()}px;
+                  height: ${height.toString()}px;
+                  background-color: ${cancelBtnColor};
+                `}>
+                <Button.Text>삭제</Button.Text>
+              </Button.Container>
+            </Button>
+          </>
+        )}
+      </View>
+    );
+  },
+);
 
 const TodoTitleText = styled.Text`
   font-size: ${props => props.theme.font.size.default.toString()}px;
