@@ -14,7 +14,7 @@ const getTodosForTodaySortedByImportanceLevel = (todos: Todo[]): Todo[] => {
   return sortTodosByImportanceLevel(unSortedTodosForToday);
 };
 
-const todosForToday = createSelector(todosSelector, todos =>
+const todosForTodaySelector = createSelector(todosSelector, todos =>
   getTodosForTodaySortedByImportanceLevel(todos),
 );
 
@@ -29,7 +29,7 @@ export const useTodosScreen = () => {
     paddingVertical,
   };
 
-  // const todos: Todo[] = useSelector(todosForToday);
+  // const todos: Todo[] = useSelector(todosForTodaySelector);
   const todos: Todo[] = [
     {
       id: 1,

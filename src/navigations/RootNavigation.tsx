@@ -1,11 +1,12 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import DrawerNavigation from './DrawerNavigation';
+import DrawerNavigation, {DrawerParamList} from './DrawerNavigation';
 import TodoFormScreen from '../screens/TodoForm/TodoFormScreen';
 import TodoScreen from '../screens/Todo/TodoScreen';
+import {NavigatorScreenParams} from '@react-navigation/native';
 
 export type RootStackParamList = {
-  Drawer: undefined;
+  Drawer: NavigatorScreenParams<DrawerParamList>;
   Todo: {todoId: number};
   TodoForm: {todoId: number};
 };
