@@ -10,7 +10,9 @@ import {useDispatch} from 'react-redux';
 import Button from '../Button/DefaultButton/Button';
 import {clearTodo, removeTodo, restoreTodo} from '../../modules/todos';
 import routes from '../../routes';
-import {DrawerScreensNavigationProp} from '../../navigations/types';
+import {HomeDrawerScreenGlobalProps} from '../../navigations/types';
+import NoTodo from '../NoTodo/NoTodo';
+import TodoImportantLevelIndicator from '../TodoImportantLevelIndicator/TodoImportantLevelIndicator';
 
 type TodosListProps = {
   todos: Todo[];
@@ -23,7 +25,9 @@ export const TodosList = React.memo((props: TodosListProps) => {
     },
     layout: {columnGap},
   } = useTheme();
-  return (
+  return props.todos.length === 0 ? (
+    <NoTodo />
+  ) : (
     <SwipeListView
       data={props.todos}
       renderItem={({item: todo}) => <TodoItem todo={todo} />}
@@ -39,10 +43,7 @@ export const TodosList = React.memo((props: TodosListProps) => {
 });
 
 const TodoItem = React.memo(({todo}: {todo: Todo}) => {
-  const navigation = useNavigation<DrawerScreensNavigationProp>();
-  const {
-    color: {coral, yellow, green},
-  } = useTheme();
+  const navigation = useNavigation<HomeDrawerScreenGlobalProps['navigation']>();
   return (
     <TouchableOpacity
       activeOpacity={1}
@@ -55,16 +56,7 @@ const TodoItem = React.memo(({todo}: {todo: Todo}) => {
           `}>
           {todo.title}
         </TodoTitleText>
-        <TodoImportantLevelIndicator
-          style={css`
-            opacity: ${todo.cleared ? '0.3' : '1'};
-            background-color: ${todo.importanceLevel === 'high'
-              ? coral
-              : todo.importanceLevel === 'medium'
-              ? yellow
-              : green};
-          `}
-        />
+        <TodoImportantLevelIndicator todo={todo} />
       </ListItemContainer>
     </TouchableOpacity>
   );
@@ -135,12 +127,4 @@ const HiddenButtons = React.memo(
 const TodoTitleText = styled.Text`
   font-size: ${props => props.theme.font.size.default.toString()}px;
   flex: 1;
-`;
-
-const TodoImportantLevelIndicator = styled.View`
-  width: ${props => props.theme.layout.indicatorSize.toString()}px;
-  height: ${props => props.theme.layout.indicatorSize.toString()}px;
-  border-radius: ${props =>
-    (props.theme.layout.indicatorSize / 2).toString()}px;
-  margin-left: ${props => props.theme.layout.columnGap.toString()}px;
 `;

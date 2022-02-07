@@ -3,6 +3,7 @@ import {BorderTheme} from './border';
 import {ButtonTheme} from './button';
 import {ColorTheme} from './color';
 import {FontTheme} from './font';
+import {FooterTheme} from './footer';
 import {IconTheme} from './icon';
 import {LayoutTheme} from './layout';
 import {ShadowTheme} from './shadow';
@@ -16,5 +17,6 @@ declare module '@emotion/react' {
     border: BorderTheme;
     shadow: ShadowTheme;
     button: ButtonTheme;
+    footer: FooterTheme;
   }
 }

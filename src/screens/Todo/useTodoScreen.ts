@@ -45,7 +45,15 @@ export const useTodoScreen = (): ReturnType => {
     });
   };
   return {
-    todo: currentTodo,
+    todo: {
+      id: 1,
+      title: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
+      content: '할검낭새ㅑㄴㅇㅁ새ㅑㅜㄴㅇ새ㅑ',
+      cleared: false,
+      deadline: new Date().getTime(),
+      importanceLevel: 'high',
+    },
+    // todo : currentTodo,
     clearCurrentTodo,
     removeCurrentTodo,
     restoreCurrentTodo,

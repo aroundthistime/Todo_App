@@ -2,6 +2,7 @@ import border from './border';
 import button from './button';
 import color from './color';
 import font from './font';
+import footer from './footer';
 import icon from './icon';
 import layout from './layout';
 import shadow from './shadow';
@@ -14,6 +15,7 @@ const theme = {
   border,
   shadow,
   button,
+  footer,
 };
 
 export default theme;

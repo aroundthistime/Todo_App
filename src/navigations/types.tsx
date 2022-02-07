@@ -26,3 +26,8 @@ export type HomeDrawerScreenProps<T extends keyof DrawerParamList> =
     DrawerScreenProps<DrawerParamList, T>,
     RootStackScreenProps<keyof RootStackParamList>
   >;
+
+export type HomeDrawerScreenGlobalProps = CompositeScreenProps<
+  DrawerScreenProps<DrawerParamList>,
+  RootStackScreenProps<keyof RootStackParamList>
+>;
