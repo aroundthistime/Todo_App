@@ -1,5 +1,8 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from '@react-navigation/stack';
 import DrawerNavigation, {DrawerParamList} from './DrawerNavigation';
 import TodoFormScreen from '../screens/TodoForm/TodoFormScreen';
 import TodoScreen from '../screens/Todo/TodoScreen';
@@ -28,21 +31,32 @@ const RootNavigation = () => (
     screenOptions={{
       title: '',
     }}>
-    <Stack.Screen
-      name={ROOT_NAVIGATION_SCREEN_NAMES.Drawer}
-      component={DrawerNavigation}
-      options={{
+    <Stack.Group>
+      <Stack.Screen
+        name={ROOT_NAVIGATION_SCREEN_NAMES.Drawer}
+        component={DrawerNavigation}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Group>
+    <Stack.Group
+      screenOptions={{
+        presentation: 'modal',
+        gestureEnabled: true,
+        gestureDirection: 'horizontal',
         headerShown: false,
-      }}
-    />
-    <Stack.Screen
-      name={ROOT_NAVIGATION_SCREEN_NAMES.Todo}
-      component={TodoScreen}
-    />
-    <Stack.Screen
-      name={ROOT_NAVIGATION_SCREEN_NAMES.TodoForm}
-      component={TodoFormScreen}
-    />
+        cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+      }}>
+      <Stack.Screen
+        name={ROOT_NAVIGATION_SCREEN_NAMES.Todo}
+        component={TodoScreen}
+      />
+      <Stack.Screen
+        name={ROOT_NAVIGATION_SCREEN_NAMES.TodoForm}
+        component={TodoFormScreen}
+      />
+    </Stack.Group>
   </Stack.Navigator>
 );
 
