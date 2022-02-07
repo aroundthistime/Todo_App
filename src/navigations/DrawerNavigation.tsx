@@ -5,9 +5,23 @@ import SettingsScreen from '../screens/Settings/SettingsScreen';
 import CalenderScreen from '../screens/Calender/CalenderScreen';
 import {Text} from 'react-native';
 import color from '../../theme/color';
-import routes from '../routes';
 
-const Drawer = createDrawerNavigator();
+export type DrawerParamList = {
+  Todos: undefined;
+  Calender: undefined;
+  Settings: undefined;
+};
+
+export const DRAWER_NAVIGATION_SCREEN_NAMES: Record<
+  string,
+  keyof DrawerParamList
+> = {
+  Todos: 'Todos',
+  Calender: 'Calender',
+  Settings: 'Settings',
+};
+
+const Drawer = createDrawerNavigator<DrawerParamList>();
 
 const DrawerNavigation = () => (
   <Drawer.Navigator
@@ -17,7 +31,7 @@ const DrawerNavigation = () => (
       drawerActiveBackgroundColor: color.lightPink,
     }}>
     <Drawer.Screen
-      name={routes.Todos}
+      name={DRAWER_NAVIGATION_SCREEN_NAMES.Todos}
       component={TodosScreen}
       options={{
         title: '',
@@ -25,7 +39,7 @@ const DrawerNavigation = () => (
       }}
     />
     <Drawer.Screen
-      name={routes.Calender}
+      name={DRAWER_NAVIGATION_SCREEN_NAMES.Calender}
       component={CalenderScreen}
       options={{
         title: '',
@@ -33,7 +47,7 @@ const DrawerNavigation = () => (
       }}
     />
     <Drawer.Screen
-      name={routes.Settings}
+      name={DRAWER_NAVIGATION_SCREEN_NAMES.Settings}
       component={SettingsScreen}
       options={{
         title: '',

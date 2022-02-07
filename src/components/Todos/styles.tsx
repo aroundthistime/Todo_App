@@ -10,6 +10,7 @@ import {useDispatch} from 'react-redux';
 import Button from '../Button/DefaultButton/Button';
 import {clearTodo, removeTodo, restoreTodo} from '../../modules/todos';
 import routes from '../../routes';
+import {DrawerScreensNavigationProp} from '../../navigations/types';
 
 type TodosListProps = {
   todos: Todo[];
@@ -38,7 +39,7 @@ export const TodosList = React.memo((props: TodosListProps) => {
 });
 
 const TodoItem = React.memo(({todo}: {todo: Todo}) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<DrawerScreensNavigationProp>();
   const {
     color: {coral, yellow, green},
   } = useTheme();
