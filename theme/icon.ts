@@ -1,9 +1,11 @@
 export interface IconTheme {
-  size: number;
+  size: Record<string, number>;
 }
 
 const icon: IconTheme = {
-  size: 30,
+  size: {
+    default: 30,
+  },
 };
 
 export default icon;

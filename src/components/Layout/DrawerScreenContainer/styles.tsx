@@ -18,7 +18,7 @@ export const DrawerIcon = () => {
   };
   return (
     <DrawerIconContainer onPress={toggleDrawer}>
-      <Icon name="bars" size={theme.icon.size} />
+      <Icon name="bars" size={theme.icon.size.default} />
     </DrawerIconContainer>
   );
 };
