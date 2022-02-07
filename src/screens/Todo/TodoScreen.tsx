@@ -1,17 +1,18 @@
 import React from 'react';
 import ViewContainer from '../../components/Layout/ViewContainer/ViewContainer';
 import {Text} from 'react-native';
-import {StackNavigationProp} from '@react-navigation/stack';
-import {RootStackParamList} from '../../navigations/RootNavigation';
+import {useTodoScreen} from './useTodoScreen';
+import NoTodo from '../../components/NoTodo/NoTodo';
 
-type Props = StackNavigationProp<RootStackParamList, 'Todo'>;
-
-const TodoScreen = ({navigation, route}: Props) => {
-  return (
-    <ViewContainer>
-      <Text>Todo</Text>
-    </ViewContainer>
-  );
+const TodoScreen = () => {
+  const {
+    todo,
+    clearCurrentTodo,
+    removeCurrentTodo,
+    restoreCurrentTodo,
+    moveToTodoEditScreen,
+  } = useTodoScreen();
+  return <ViewContainer>{todo ? <Text>Todo</Text> : <NoTodo />}</ViewContainer>;
 };
 
 export default TodoScreen;

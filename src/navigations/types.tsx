@@ -10,7 +10,10 @@ import {
 import {RootStackParamList} from './RootNavigation';
 import {DrawerParamList} from './DrawerNavigation';
 
-export type DrawerScreensNavigationProp = CompositeNavigationProp<
+export type RootStackNavigationProps<T extends keyof RootStackParamList> =
+  StackNavigationProp<RootStackParamList, T>;
+
+export type HomeDrawerNavigationProp = CompositeNavigationProp<
   DrawerNavigationProp<DrawerParamList>,
   StackNavigationProp<RootStackParamList>
 >;

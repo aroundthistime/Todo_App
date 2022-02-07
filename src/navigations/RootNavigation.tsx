@@ -4,11 +4,12 @@ import DrawerNavigation, {DrawerParamList} from './DrawerNavigation';
 import TodoFormScreen from '../screens/TodoForm/TodoFormScreen';
 import TodoScreen from '../screens/Todo/TodoScreen';
 import {NavigatorScreenParams} from '@react-navigation/native';
+import {Todo} from '../@types/Todo';
 
 export type RootStackParamList = {
   Drawer: NavigatorScreenParams<DrawerParamList>;
   Todo: {todoId: number};
-  TodoForm: {todoId: number};
+  TodoForm: {todo?: Todo};
 };
 
 export const ROOT_NAVIGATION_SCREEN_NAMES: Record<

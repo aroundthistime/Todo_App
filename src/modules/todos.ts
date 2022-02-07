@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {Todo} from '../@types/Todo';
 
-type TodosState = Todo[];
+const initialState: Todo[] = [];
 
-const initialState: TodosState = [];
+export type TodoUpdateFields = Partial<Todo> & {id: number};
 
 export const clearTodo = createAsyncThunk(
   'todos/clearTodo',
@@ -12,7 +12,7 @@ export const clearTodo = createAsyncThunk(
       id: todoId,
       cleared: true,
     };
-    thunkAPI.dispatch(modifyTodo(updatedFields));
+    thunkAPI.dispatch(editTodo(updatedFields));
   },
 );
 
@@ -23,7 +23,7 @@ export const restoreTodo = createAsyncThunk(
       id: todoId,
       cleared: false,
     };
-    thunkAPI.dispatch(modifyTodo(updatedFields));
+    thunkAPI.dispatch(editTodo(updatedFields));
   },
 );
 
@@ -44,7 +44,7 @@ const todosSlice = createSlice({
         state.splice(index, 1);
       }
     },
-    modifyTodo(state, action: PayloadAction<Partial<Todo> & {id: number}>) {
+    editTodo(state, action: PayloadAction<TodoUpdateFields>) {
       //Partial이지만 id는 꼭 필요함
       const index = state.findIndex(
         (todo: Todo) => todo.id === action.payload.id,
@@ -61,7 +61,7 @@ const todosSlice = createSlice({
   },
 });
 
-export const {addTodo, removeTodo, modifyTodo} = todosSlice.actions;
+export const {addTodo, removeTodo, editTodo} = todosSlice.actions;
 
 export const todosSelector = state => (state.todos ? state.todos : []);
 
