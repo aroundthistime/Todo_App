@@ -1,4 +1,6 @@
+import {useTheme} from '@emotion/react';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {Alert} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {Todo} from '../../@types/Todo';
 import {RootState} from '../../modules/root';
@@ -12,6 +14,7 @@ type ReturnType = {
   removeCurrentTodo: Function;
   restoreCurrentTodo: Function;
   moveToTodoEditScreen: Function;
+  footerBtnIconSize: number;
 };
 
 export const useTodoScreen = (): ReturnType => {
@@ -21,6 +24,9 @@ export const useTodoScreen = (): ReturnType => {
   const currentTodo: Todo | undefined = useSelector((state: RootState) =>
     state.todos.find(todo => todo.id === todoId),
   );
+  const {
+    footer: {buttonIconSize: footerBtnIconSize},
+  } = useTheme();
   const dispatch = useDispatch();
   const navigation =
     useNavigation<RootStackScreenProps<'Todo'>['navigation']>();
@@ -30,9 +36,21 @@ export const useTodoScreen = (): ReturnType => {
     }
   };
   const removeCurrentTodo = () => {
-    if (currentTodo?.id) {
-      dispatch(removeTodo(currentTodo.id));
-    }
+    // Alert.alert("정말 투두를 삭제하시겠습니까?", "삭제한 투두는 복원할 수 없습니다.", [
+    //   {
+    //     text : "예",
+    //     onPress : () => {
+    //       if (currentTodo?.id) {
+    //         dispatch(removeTodo(currentTodo.id));
+    //       }
+    //     }
+    //   },
+    //   {
+    //     text : "아니오",
+    //     onPress : () => 1
+    //   }
+    // ])
+    //toast 추가해야됨
   };
   const restoreCurrentTodo = () => {
     if (currentTodo?.id) {
@@ -58,5 +76,6 @@ export const useTodoScreen = (): ReturnType => {
     removeCurrentTodo,
     restoreCurrentTodo,
     moveToTodoEditScreen,
+    footerBtnIconSize,
   };
 };

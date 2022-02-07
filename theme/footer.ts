@@ -5,15 +5,19 @@ export type FooterTheme = {
     horizontal: number;
     vertical: number;
   };
+  gapBetweenButtons: number;
+  buttonIconSize: number;
 };
 
 const footer = {
-  height: 100,
-  backgroundColor: 'white',
+  height: 80,
+  backgroundColor: '#F7F7F7',
   padding: {
     horizontal: 20,
     vertical: 10,
   },
+  gapBetweenButtons: 10,
+  buttonIconSize: 22,
 };
 
 export default footer;

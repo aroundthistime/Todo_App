@@ -58,9 +58,12 @@ TodoDetail.DeadlineText = styled.Text`
 TodoDetail.Body = styled(TodoDetail.SubContainer)`
   flex: 1;
   width: 100%;
-  background-color: lightcoral;
   padding-top: ${props => props.theme.layout.padding.vertical.toString()}px;
   padding-bottom: ${props => props.theme.layout.padding.vertical.toString()}px;
+`;
+
+TodoDetail.Content = styled.Text`
+  font-size: ${props => props.theme.font.size.default.toString()}px;
 `;
 
 export default TodoDetail;

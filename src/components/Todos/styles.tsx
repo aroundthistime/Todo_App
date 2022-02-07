@@ -104,7 +104,7 @@ const HiddenButtons = React.memo(
                 height: ${height.toString()}px;
                 background-color: ${approveBtnColor};
               `}>
-              <Button.Text>성공</Button.Text>
+              <Button.Text>완료</Button.Text>
             </Button.Container>
           </Button>
         )}
