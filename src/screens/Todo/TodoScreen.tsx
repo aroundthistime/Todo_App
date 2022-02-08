@@ -20,9 +20,13 @@ const TodoScreen = () => {
       <TodoDetail>
         <TodoDetail.Header>
           <TodoDetail.HeaderRow>
-            {/* <TodoDetail.TodoStatusIcon isCleared={todo.cleared} /> */}
-            <TodoDetail.TodoTitle>{todo.title}</TodoDetail.TodoTitle>
-            {/* <TodoImportantLevelIndicator todo={todo} size={defaultIconSize} /> */}
+            <TodoDetail.TodoTitle>
+              <TodoDetail.TodoStatusIcon
+                cleared={todo.cleared}
+                importanceLevel={todo.importanceLevel}
+              />
+              {todo.title}
+            </TodoDetail.TodoTitle>
           </TodoDetail.HeaderRow>
           <TodoDetail.HeaderRow>
             <TodoDetail.DeadlineText>

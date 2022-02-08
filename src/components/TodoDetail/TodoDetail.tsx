@@ -1,10 +1,13 @@
 import React from 'react';
 import styled, {css} from '@emotion/native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Fontisto from 'react-native-vector-icons/Fontisto';
 import {Todo} from '../../@types/Todo';
 import color from '../../../theme/color';
 import ViewContainer from '../Layout/ViewContainer/ViewContainer';
 import icon from '../../../theme/icon';
+import font from '../../../theme/font';
+import {Text} from 'react-native';
 
 type Props = {
   children?: React.ReactNode;
@@ -37,12 +40,27 @@ TodoDetail.HeaderRow = styled.View`
   margin-bottom: 10px;
 `;
 
-TodoDetail.TodoStatusIcon = ({isCleared}: {isCleared: boolean}) =>
-  isCleared ? (
-    <Icon name="check" color={color.green} size={icon.size.default} />
-  ) : (
-    <Icon name="exclamation" color={'red'} size={icon.size.default} />
+type TodoStatusIconProps = Pick<Todo, 'cleared' | 'importanceLevel'>;
+
+TodoDetail.TodoStatusIcon = ({
+  cleared,
+  importanceLevel,
+}: TodoStatusIconProps) => {
+  const iconName: string = cleared ? 'checkbox-active' : 'checkbox-passive';
+  const iconSize: number = font.size.large;
+  const iconColor: string =
+    importanceLevel === 'high'
+      ? color.coral
+      : importanceLevel === 'medium'
+      ? color.yellow
+      : color.green;
+  return (
+    <Text>
+      <Fontisto name={iconName} size={iconSize} color={iconColor} />
+      &nbsp;&nbsp;
+    </Text>
   );
+};
 
 TodoDetail.TodoTitle = styled.Text`
   flex: 1;
