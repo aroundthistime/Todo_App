@@ -7,6 +7,7 @@ import {FooterTheme} from './footer';
 import {IconTheme} from './icon';
 import {LayoutTheme} from './layout';
 import {ShadowTheme} from './shadow';
+import {TextInputTheme} from './textInput';
 
 declare module '@emotion/react' {
   export interface Theme {
@@ -18,5 +19,6 @@ declare module '@emotion/react' {
     shadow: ShadowTheme;
     button: ButtonTheme;
     footer: FooterTheme;
+    textInput: TextInputTheme;
   }
 }

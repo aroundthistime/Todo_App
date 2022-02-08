@@ -6,6 +6,7 @@ import footer from './footer';
 import icon from './icon';
 import layout from './layout';
 import shadow from './shadow';
+import textInput from './textInput';
 
 const theme = {
   layout,
@@ -16,6 +17,7 @@ const theme = {
   shadow,
   button,
   footer,
+  textInput,
 };
 
 export default theme;

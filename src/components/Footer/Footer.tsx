@@ -18,12 +18,12 @@ const Footer = ({children}: Props) => {
       {children &&
         React.Children.map(children, (child, index) =>
           React.cloneElement(child, {
-            style: css`
-              margin-right: ${React.Children.count(children) > 0 &&
-              index < React.Children.count(children) - 1
-                ? gapBetweenButtons.toString()
-                : '0'}px;
-            `,
+            style: {
+              marginRight:
+                index < React.Children.count(children) - 1
+                  ? gapBetweenButtons
+                  : 0,
+            },
           }),
         )}
     </Footer.Container>
@@ -48,7 +48,7 @@ type FooterButtonWithContainerProps = {
   onPress: Function;
   text: string;
   style?: ReactNativeStyle;
-  type: FooterBtnWithContainerType;
+  type?: FooterBtnWithContainerType;
 };
 
 type FooterBtnWithContainerType = 'primary' | 'secondary' | 'disabled';
@@ -57,7 +57,7 @@ Footer.ButtonWithContainer = ({
   onPress,
   text,
   style = {},
-  type,
+  type = 'primary',
 }: FooterButtonWithContainerProps) => (
   <TouchableOpacity
     onPress={() => onPress()}

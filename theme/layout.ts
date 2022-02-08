@@ -6,6 +6,7 @@ export interface LayoutTheme {
   padding: {[key in string]: number};
   borderRadius: number;
   indicatorSize: number;
+  rowGap: number;
   columnGap: number;
 }
 
@@ -18,6 +19,7 @@ const layout: LayoutTheme = {
   },
   borderRadius: 10,
   indicatorSize: 16,
+  rowGap: 15,
   columnGap: 30,
 };
 
