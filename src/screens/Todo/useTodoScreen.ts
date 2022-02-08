@@ -36,21 +36,29 @@ export const useTodoScreen = (): ReturnType => {
     }
   };
   const removeCurrentTodo = () => {
-    // Alert.alert("정말 투두를 삭제하시겠습니까?", "삭제한 투두는 복원할 수 없습니다.", [
-    //   {
-    //     text : "예",
-    //     onPress : () => {
-    //       if (currentTodo?.id) {
-    //         dispatch(removeTodo(currentTodo.id));
-    //       }
-    //     }
-    //   },
-    //   {
-    //     text : "아니오",
-    //     onPress : () => 1
-    //   }
-    // ])
-    //toast 추가해야됨
+    Alert.alert(
+      '정말 투두를 삭제하시겠습니까?',
+      '삭제한 투두는 복원할 수 없습니다.',
+      [
+        {
+          text: '예',
+          onPress: () => {
+            if (currentTodo?.id) {
+              try {
+                dispatch(removeTodo(currentTodo.id));
+                navigation.goBack();
+              } catch (error) {
+                console.log(error);
+              }
+            }
+          },
+        },
+        {
+          text: '아니오',
+          onPress: () => 1,
+        },
+      ],
+    );
   };
   const restoreCurrentTodo = () => {
     if (currentTodo?.id) {
