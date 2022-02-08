@@ -36,10 +36,11 @@ const todosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
-    addTodo(state, action) {
+    addTodo(state, action: PayloadAction<Omit<Todo, 'id' | 'cleared'>>) {
       const lastTodoId: number = state[state.length - 1]?.id || 0;
       state.push({
         id: lastTodoId + 1,
+        cleared: false,
         ...action.payload,
       });
       showToast('투두가 추가되었습니다');

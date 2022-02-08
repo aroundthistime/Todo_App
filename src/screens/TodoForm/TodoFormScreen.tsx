@@ -1,8 +1,18 @@
 import React from 'react';
 import {Text} from 'react-native';
 import ViewContainer from '../../components/Layout/ViewContainer/ViewContainer';
+import {useTodoFormScreen} from './useTodoFormScreen';
 
 const TodoFormScreen = () => {
+  const {
+    todoTitleInput,
+    todoContentInput,
+    importanceLevel,
+    setImportanceLevel,
+    deadline,
+    setDeadline,
+    saveTodo,
+  } = useTodoFormScreen();
   return (
     <ViewContainer>
       <Text>여기서 투두 작성하자</Text>
