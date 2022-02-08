@@ -19,6 +19,7 @@ import {Provider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {QueryClient, QueryClientProvider} from 'react-query';
 import {ThemeProvider} from '@emotion/react';
+import {RootSiblingParent} from 'react-native-root-siblings';
 import 'react-native-gesture-handler';
 
 import theme from './theme';
@@ -46,13 +47,15 @@ let persistor = persistStore(store);
 
 const queryClient = new QueryClient();
 
-const RNRedux = () => (
+const AppWrapper = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <NavigationContainer>
-            <App />
+            <RootSiblingParent>
+              <App />
+            </RootSiblingParent>
           </NavigationContainer>
         </ThemeProvider>
       </QueryClientProvider>
@@ -60,4 +63,4 @@ const RNRedux = () => (
   </Provider>
 );
 
-AppRegistry.registerComponent(appName, () => RNRedux);
+AppRegistry.registerComponent(appName, () => AppWrapper);
