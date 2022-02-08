@@ -1,14 +1,15 @@
 import React from 'react';
-import styled, {css} from '@emotion/native';
+import styled, {css, ReactNativeStyle} from '@emotion/native';
 import {TouchableOpacity} from 'react-native';
 
 type Props = {
   onPress: Function;
   children?: React.ReactNode;
+  style?: ReactNativeStyle;
 };
 
 const Button = (props: Props) => (
-  <TouchableOpacity onPress={() => props.onPress()}>
+  <TouchableOpacity onPress={() => props.onPress()} style={props.style}>
     {props.children}
   </TouchableOpacity>
 );

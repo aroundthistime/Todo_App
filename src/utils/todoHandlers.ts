@@ -1,4 +1,4 @@
-import {IMPORTANCE_LEVEL_DICT, Todo} from '../@types/Todo';
+import {ImportanceLevel, IMPORTANCE_LEVEL_DICT, Todo} from '../@types/Todo';
 import {datesAreOnSameDay} from './dates';
 
 export const sortTodosByImportanceLevel = (todos: Todo[]): Todo[] => {
@@ -21,3 +21,12 @@ export const filterTodosForToday = (todos: Todo[]) =>
 export const countClearedTodos = (todos: Todo[]): number => {
   return todos.filter(todo => todo.cleared).length;
 };
+
+export const getImportanceLevelInKorean = (
+  importanceLevel: ImportanceLevel,
+): string =>
+  importanceLevel === 'high'
+    ? '높음'
+    : importanceLevel === 'medium'
+    ? '보통'
+    : '낮음';

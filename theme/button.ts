@@ -6,6 +6,9 @@ export type ButtonTheme = {
     height: number;
   };
   color: Record<string, string>;
+  selector: {
+    border: (borderColor: string) => string;
+  };
 };
 
 const button = {
@@ -18,6 +21,11 @@ const button = {
     cancelBtnColor: 'red',
     disabledColor: 'gray',
     restoreBtnColor: color.yellow,
+  },
+  selector: {
+    border: (borderColor: string) => {
+      return `border-width : 1.2px; border-color : ${borderColor}`;
+    },
   },
 };
 

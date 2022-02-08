@@ -1,13 +1,11 @@
 import React from 'react';
 import styled, {css} from '@emotion/native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import {Todo} from '../../@types/Todo';
-import color from '../../../theme/color';
 import ViewContainer from '../Layout/ViewContainer/ViewContainer';
-import icon from '../../../theme/icon';
 import font from '../../../theme/font';
 import {Text} from 'react-native';
+import {getColorOfImportanceLevel} from '../../utils/styleHandler';
 
 type Props = {
   children?: React.ReactNode;
@@ -48,15 +46,13 @@ TodoDetail.TodoStatusIcon = ({
 }: TodoStatusIconProps) => {
   const iconName: string = cleared ? 'checkbox-active' : 'checkbox-passive';
   const iconSize: number = font.size.large;
-  const iconColor: string =
-    importanceLevel === 'high'
-      ? color.coral
-      : importanceLevel === 'medium'
-      ? color.yellow
-      : color.green;
   return (
     <Text>
-      <Fontisto name={iconName} size={iconSize} color={iconColor} />
+      <Fontisto
+        name={iconName}
+        size={iconSize}
+        color={getColorOfImportanceLevel(importanceLevel)}
+      />
       &nbsp;&nbsp;
     </Text>
   );

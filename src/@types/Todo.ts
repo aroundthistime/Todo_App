@@ -1,10 +1,6 @@
-export type ImportanceLevel = 'high' | 'medium' | 'low';
+export type ImportanceLevel = keyof typeof IMPORTANCE_LEVEL_DICT;
 
-type ImportanceLevelDict = {
-  [key in ImportanceLevel]: number;
-};
-
-export const IMPORTANCE_LEVEL_DICT: ImportanceLevelDict = {
+export const IMPORTANCE_LEVEL_DICT = {
   high: -1,
   medium: 0,
   low: 1,
