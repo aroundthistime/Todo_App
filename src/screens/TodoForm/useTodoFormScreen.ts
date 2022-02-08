@@ -1,8 +1,11 @@
 import {useRoute} from '@react-navigation/native';
-import {RootStackNavigationProps} from '../../navigations/types';
+import {RootStackScreenProps} from '../../navigations/types';
 
 export const useTodoFormScreen = () => {
   const {
     params: {todo},
-  } = useRoute<RootStackNavigationProps<'TodoForm'>[]>();
+  } = useRoute<RootStackScreenProps<'TodoForm'>['route']>();
+  return {
+    todo,
+  };
 };
