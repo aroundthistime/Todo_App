@@ -39,6 +39,15 @@ const RootNavigation = () => (
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name={ROOT_NAVIGATION_SCREEN_NAMES.TodoForm}
+        component={TodoFormScreen}
+        options={{
+          headerTitle: '투두 작성',
+          headerShown: true,
+          headerTitleAlign: 'center',
+        }}
+      />
     </Stack.Group>
     <Stack.Group
       screenOptions={{
@@ -51,10 +60,6 @@ const RootNavigation = () => (
       <Stack.Screen
         name={ROOT_NAVIGATION_SCREEN_NAMES.Todo}
         component={TodoScreen}
-      />
-      <Stack.Screen
-        name={ROOT_NAVIGATION_SCREEN_NAMES.TodoForm}
-        component={TodoFormScreen}
       />
     </Stack.Group>
   </Stack.Navigator>
