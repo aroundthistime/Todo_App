@@ -10,6 +10,14 @@ export class Calender {
     this.endDate = endDate;
   }
 
+  get year(): number {
+    return this.startDate.getFullYear();
+  }
+
+  get month(): number {
+    return this.startDate.getMonth() + 1;
+  }
+
   static getYearAndMonthFromDate(date: Date) {
     return {
       year: date.getFullYear(),
