@@ -159,7 +159,7 @@ const PercentageCircleLibrary = ({
               ...styles.text,
               ...textStyle,
             }}>
-            {percent}%
+            {isNaN(percent) ? '-' : `${percent}%`}
           </Text>
         )}
       </View>
@@ -167,4 +167,4 @@ const PercentageCircleLibrary = ({
   );
 };
 
-export default PercentageCircleLibrary;
+export default React.memo(PercentageCircleLibrary);
