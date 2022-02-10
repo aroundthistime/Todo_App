@@ -1,11 +1,8 @@
 export class Calender {
-  now: Date;
   startDate: Date;
   endDate: Date;
   constructor() {
-    const now = new Date();
-    this.now = now;
-    const {startDate, endDate} = this.getStartAndEndDate(now);
+    const {startDate, endDate} = this.getStartAndEndDate(new Date());
     this.startDate = startDate;
     this.endDate = endDate;
   }
