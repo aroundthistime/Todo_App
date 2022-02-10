@@ -11,6 +11,7 @@ export type ButtonTheme = {
   };
   floatingActionButton: {
     size: number;
+    iconSize: number;
     positionOffset: number;
     color: string;
   };
@@ -34,6 +35,7 @@ const button = {
   },
   floatingActionButton: {
     size: 70,
+    iconSize: 30,
     positionOffset: 50,
     color: color.coral,
   },

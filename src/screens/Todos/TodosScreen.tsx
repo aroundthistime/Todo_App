@@ -1,5 +1,5 @@
 import React from 'react';
-import FloatingActionButton from '../../components/Button/FloatActionButton/FloatActionButton';
+import TodoAddButton from '../../components/Button/TodoAddButton/TodoAddButton';
 import DrawerScreenContainer from '../../components/Layout/DrawerScreenContainer/DrawerScreenContainer';
 import Todos from '../../components/Todos/Todos';
 import {TodosBgImage} from './styles';
@@ -16,7 +16,7 @@ const TodosScreen = () => {
       }}>
       <TodosBgImage />
       <Todos date={new Date()} todos={todos} />
-      <FloatingActionButton onPress={() => 1} />
+      <TodoAddButton />
     </DrawerScreenContainer>
   );
 };
