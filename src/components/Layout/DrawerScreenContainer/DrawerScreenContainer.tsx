@@ -1,7 +1,7 @@
 import {ReactNativeStyle} from '@emotion/native';
 import React from 'react';
 import ViewContainer from '../ViewContainer/ViewContainer';
-import {DrawerIcon} from './styles';
+import {DrawerIcon} from './styled';
 
 type Props = {
   children?: React.ReactNode;

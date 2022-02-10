@@ -2,7 +2,7 @@ import React from 'react';
 import TodoAddButton from '../../components/Button/TodoAddButton/TodoAddButton';
 import DrawerScreenContainer from '../../components/Layout/DrawerScreenContainer/DrawerScreenContainer';
 import Todos from '../../components/Todos/Todos';
-import {TodosBgImage} from './styles';
+import {TodosBgImage} from './styled';
 import {useTodosScreen} from './useTodosScreen';
 
 const TodosScreen = () => {

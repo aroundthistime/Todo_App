@@ -1,6 +1,6 @@
 import {useTheme} from '@emotion/react';
 import React from 'react';
-import PercentageCircleLibrary from './styles';
+import PercentageCircleLibrary from './styled';
 
 type Props = {
   percentage: number;

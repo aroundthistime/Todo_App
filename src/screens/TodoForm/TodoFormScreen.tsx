@@ -7,7 +7,7 @@ import {
   ImportanceLevelSelectors,
   TodoForm,
   TodoInput,
-} from './styles';
+} from './styled';
 import Footer from '../../components/Footer/Footer';
 import {IMPORTANCE_LEVEL_DICT} from '../../@types/Todo';
 import DateTimePicker from 'react-native-modal-datetime-picker';

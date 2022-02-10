@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, {css, ReactNativeStyle} from '@emotion/native';
 import {TouchableOpacity} from 'react-native';
-import {FooterBtnContainer, FooterBtnWithContainerText} from './styles';
+import {FooterBtnContainer, FooterBtnWithContainerText} from './styled';
 import {useTheme} from '@emotion/react';
 import Button from '../Button/DefaultButton/Button';
 

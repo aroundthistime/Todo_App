@@ -7,7 +7,7 @@ import {
   QuoteContent,
   QuoteFooter,
   QuoteMain,
-} from './styles';
+} from './styled';
 
 interface QuoteProps {
   closeQuote: Function;

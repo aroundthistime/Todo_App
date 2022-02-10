@@ -7,7 +7,7 @@ import {getFullDateStr} from '../../utils/dates';
 import {countClearedTodos} from '../../utils/todoHandlers';
 import BoxContainer from '../Layout/BoxContainer/BoxContainer';
 import PercentageCircle from '../PercentageCircle/PercentageCircle';
-import {TodosList} from './styles';
+import {TodosList} from './styled';
 
 type Props = {
   todos: Todo[];
