@@ -9,6 +9,11 @@ export type ButtonTheme = {
   selector: {
     border: (borderColor: string) => string;
   };
+  floatingActionButton: {
+    size: number;
+    positionOffset: number;
+    color: string;
+  };
 };
 
 const button = {
@@ -26,6 +31,11 @@ const button = {
     border: (borderColor: string) => {
       return `border-width : 1.2px; border-color : ${borderColor}`;
     },
+  },
+  floatingActionButton: {
+    size: 70,
+    positionOffset: 50,
+    color: color.coral,
   },
 };
 

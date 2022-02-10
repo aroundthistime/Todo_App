@@ -9,7 +9,11 @@ const TodosScreen = () => {
   const {drawerScreenContainerStyle, todos} = useTodosScreen();
   return (
     <DrawerScreenContainer
-      style={{...drawerScreenContainerStyle, backgroundColor: 'white'}}>
+      style={{
+        ...drawerScreenContainerStyle,
+        backgroundColor: 'white',
+        position: 'relative',
+      }}>
       <TodosBgImage />
       <Todos date={new Date()} todos={todos} />
       <FloatingActionButton onPress={() => 1} />

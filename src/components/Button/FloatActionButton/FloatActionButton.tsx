@@ -10,20 +10,25 @@ type Props = {
 
 const FloatingActionButton = (props: Props) => {
   const {
-    color: {coral},
+    button: {
+      floatingActionButton: {size, positionOffset, color},
+    },
     shadow: {default: defaultShadow},
   } = useTheme();
   return (
-    <Button onPress={props.onPress}>
+    <Button
+      onPress={props.onPress}
+      style={css`
+        position: absolute;
+        right: ${positionOffset.toString()}px;
+        bottom: ${positionOffset.toString()}px;
+      `}>
       <Button.Container
         style={css`
-          position: absolute;
-          bottom: 20px;
-          right: 20px;
-          width: 50px;
-          height: 50px;
-          border-radius: 25px;
-          background-color: ${coral};
+          width: ${size.toString()}px;
+          height: ${size.toString()}px;
+          border-radius: 35px;
+          background-color: ${color};
           ${defaultShadow};
         `}>
         {props.children}
@@ -32,4 +37,4 @@ const FloatingActionButton = (props: Props) => {
   );
 };
 
-export default FloatingActionButton;
+export default React.memo(FloatingActionButton);
