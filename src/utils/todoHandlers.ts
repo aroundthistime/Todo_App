@@ -15,9 +15,6 @@ export const sortTodosByImportanceLevel = (todos: Todo[]): Todo[] => {
 export const filterTodosByDate = (todos: Todo[], date: Date): Todo[] =>
   todos.filter(todo => datesAreOnSameDay(date, new Date(todo.deadline)));
 
-export const filterTodosForToday = (todos: Todo[]) =>
-  filterTodosByDate(todos, new Date());
-
 export const countClearedTodos = (todos: Todo[]): number => {
   return todos.filter(todo => todo.cleared).length;
 };
@@ -30,3 +27,8 @@ export const getImportanceLevelInKorean = (
     : importanceLevel === 'medium'
     ? '보통'
     : '낮음';
+
+export const filterAndSortTodos = (todos: Todo[], date: Date): Todo[] => {
+  const filteredTodos = filterTodosByDate(todos, date);
+  return sortTodosByImportanceLevel(filteredTodos);
+};

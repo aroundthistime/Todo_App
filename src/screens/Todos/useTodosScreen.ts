@@ -4,18 +4,10 @@ import {createSelector} from '@reduxjs/toolkit';
 import {useSelector} from 'react-redux';
 import {Todo} from '../../@types/Todo';
 import {todosSelector} from '../../modules/todos';
-import {
-  filterTodosForToday,
-  sortTodosByImportanceLevel,
-} from '../../utils/todoHandlers';
-
-const getTodosForTodaySortedByImportanceLevel = (todos: Todo[]): Todo[] => {
-  const unSortedTodosForToday = filterTodosForToday(todos);
-  return sortTodosByImportanceLevel(unSortedTodosForToday);
-};
+import {filterAndSortTodos} from '../../utils/todoHandlers';
 
 const todosForTodaySelector = createSelector(todosSelector, todos =>
-  getTodosForTodaySortedByImportanceLevel(todos),
+  filterAndSortTodos(todos, new Date()),
 );
 
 export const useTodosScreen = () => {

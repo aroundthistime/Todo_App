@@ -1,4 +1,4 @@
-export class Calender {
+export class Month {
   startDate: Date;
   endDate: Date;
   constructor() {
@@ -22,12 +22,12 @@ export class Calender {
     };
   }
 
-  private getYearAndMonthFromCurrentCalender() {
-    return Calender.getYearAndMonthFromDate(this.startDate);
+  private getYearAndMonthFromCurrentMonth() {
+    return Month.getYearAndMonthFromDate(this.startDate);
   }
 
   private getStartAndEndDate(date: Date) {
-    const {year, month} = Calender.getYearAndMonthFromDate(date);
+    const {year, month} = Month.getYearAndMonthFromDate(date);
     const startDate = new Date(year, month, 1);
     const endDate = new Date(year, month + 1, 0);
     return {
@@ -37,7 +37,7 @@ export class Calender {
   }
 
   private changeMonth(offset: number) {
-    const {year, month} = this.getYearAndMonthFromCurrentCalender();
+    const {year, month} = this.getYearAndMonthFromCurrentMonth();
     const {startDate, endDate} = this.getStartAndEndDate(
       new Date(year, month + offset, 1),
     );
