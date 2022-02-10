@@ -2,12 +2,15 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import {useTodoFormScreen} from './useTodoFormScreen';
 import {
+  DeadlineInput,
   ImportanceLevelSelector,
   ImportanceLevelSelectors,
   TodoForm,
   TodoInput,
 } from './styles';
 import Footer from '../../components/Footer/Footer';
+import {IMPORTANCE_LEVEL_DICT} from '../../@types/Todo';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 const TodoFormScreen = () => {
   const {
@@ -16,8 +19,11 @@ const TodoFormScreen = () => {
     importanceLevel,
     setImportanceLevel,
     deadline,
-    setDeadline,
     saveTodo,
+    deadlinePickerVisible,
+    showDatePicker,
+    hideDatePicker,
+    handleDateConfirm,
   } = useTodoFormScreen();
   return (
     <>
@@ -41,23 +47,28 @@ const TodoFormScreen = () => {
         <TodoInput>
           <TodoInput.Name>우선순위</TodoInput.Name>
           <ImportanceLevelSelectors>
-            <ImportanceLevelSelector
-              level={'high'}
-              onPress={() => setImportanceLevel('high')}
-              isSelected={importanceLevel === 'high'}
-            />
-            <ImportanceLevelSelector
-              level={'medium'}
-              onPress={() => setImportanceLevel('medium')}
-              isSelected={importanceLevel === 'medium'}
-            />
-            <ImportanceLevelSelector
-              level={'low'}
-              onPress={() => setImportanceLevel('low')}
-              isSelected={importanceLevel === 'low'}
-            />
+            {Object.keys(IMPORTANCE_LEVEL_DICT).map(level => (
+              <ImportanceLevelSelector
+                level={level}
+                onPress={() => setImportanceLevel(level)}
+                isSelected={importanceLevel === level}
+                key={level}
+              />
+            ))}
           </ImportanceLevelSelectors>
         </TodoInput>
+        <TodoInput>
+          <TodoInput.Name>기한</TodoInput.Name>
+          <DeadlineInput onPress={showDatePicker} deadline={deadline} />
+        </TodoInput>
+        <DateTimePicker
+          isVisible={deadlinePickerVisible}
+          mode="date"
+          date={deadline}
+          onConfirm={handleDateConfirm}
+          onCancel={() => hideDatePicker()}
+          minimumDate={new Date()}
+        />
       </TodoForm>
       <Footer>
         <Footer.ButtonWithContainer onPress={saveTodo} text="저장" />

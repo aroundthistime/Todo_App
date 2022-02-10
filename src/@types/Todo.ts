@@ -4,7 +4,7 @@ export const IMPORTANCE_LEVEL_DICT = {
   high: -1,
   medium: 0,
   low: 1,
-};
+} as const;
 
 export interface Todo {
   id: number;

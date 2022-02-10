@@ -1,5 +1,6 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useState} from 'react';
+import {Platform} from 'react-native';
 import {useDispatch} from 'react-redux';
 import {ImportanceLevel} from '../../@types/Todo';
 import {useInput, useInputType} from '../../hooks/useInput';
@@ -18,6 +19,10 @@ type ReturnType = {
   deadline: Date;
   setDeadline: React.Dispatch<React.SetStateAction<Date>>;
   saveTodo: () => void;
+  deadlinePickerVisible: boolean;
+  showDatePicker: Function;
+  hideDatePicker: Function;
+  handleDateConfirm: (date: Date) => void;
 };
 
 export const useTodoFormScreen = (): ReturnType => {
@@ -26,6 +31,8 @@ export const useTodoFormScreen = (): ReturnType => {
   } = useRoute<RootStackScreenProps<'TodoForm'>['route']>();
   const navigation = useNavigation<RootStackNavigationProps<'TodoForm'>>();
   const dispatch = useDispatch();
+  const [isDatePickerVisible, setDatePickerVisibility] =
+    useState<boolean>(false);
   const todoTitleInput = useInput(todo ? todo.title : '');
   const todoContentInput = useInput(todo ? todo.content : '');
   const [importanceLevel, setImportanceLevel] = useState<ImportanceLevel>(
@@ -67,6 +74,20 @@ export const useTodoFormScreen = (): ReturnType => {
       navigation.goBack();
     }
   };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleDateConfirm = (date: Date) => {
+    hideDatePicker();
+    setDeadline(date);
+  };
+
   return {
     todoTitleInput,
     todoContentInput,
@@ -75,5 +96,9 @@ export const useTodoFormScreen = (): ReturnType => {
     deadline,
     setDeadline,
     saveTodo,
+    deadlinePickerVisible: isDatePickerVisible,
+    showDatePicker,
+    hideDatePicker,
+    handleDateConfirm,
   };
 };

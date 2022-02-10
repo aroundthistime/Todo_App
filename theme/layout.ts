@@ -19,7 +19,7 @@ const layout: LayoutTheme = {
   },
   borderRadius: 10,
   indicatorSize: 16,
-  rowGap: 15,
+  rowGap: 20,
   columnGap: 30,
 };
 

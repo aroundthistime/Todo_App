@@ -1,11 +1,12 @@
 import React from 'react';
 import styled, {css, ReactNativeStyle} from '@emotion/native';
-import {ScrollView, View} from 'react-native';
+import {ScrollView, TouchableOpacity, View} from 'react-native';
 import {useTheme} from '@emotion/react';
 import Button from '../../components/Button/DefaultButton/Button';
 import {ImportanceLevel} from '../../@types/Todo';
 import {getColorOfImportanceLevel} from '../../utils/styleHandler';
 import {getImportanceLevelInKorean} from '../../utils/todoHandlers';
+import {getFullDateStr} from '../../utils/dates';
 
 export const TodoForm = ({children}) => {
   const {
@@ -84,13 +85,7 @@ TodoInput.Input = styled.TextInput`
     ).toString()}px;
 `;
 
-type ImportanceLevelSelectorsProps = {
-  children: React.ReactElement | React.ReactElement[];
-};
-
-export const ImportanceLevelSelectors = ({
-  children,
-}: ImportanceLevelSelectorsProps) => {
+export const ImportanceLevelSelectors = ({children}) => {
   const {
     footer: {gapBetweenButtons},
   } = useTheme();
@@ -100,6 +95,7 @@ export const ImportanceLevelSelectors = ({
         flex: 1;
         flex-direction: row;
         justify-content: space-between;
+        align-items: center;
       `}>
       {React.Children.map(children, (child, index) =>
         React.cloneElement(child, {
@@ -165,3 +161,29 @@ export const ImportanceLevelSelector = ({
     </Button>
   );
 };
+
+type DeadlineInputProps = {
+  onPress: Function;
+  deadline: Date;
+};
+
+const DeadlineInputContainer = styled.Text`
+  flex: 1;
+  background-color: white;
+  border-radius: ${props => props.theme.layout.borderRadius.toString()}px;
+  ${props => props.theme.border.lightGray('top', 'bottom', 'right', 'left')};
+  font-size: ${props => props.theme.font.size.default.toString()}px;
+  padding-top: ${props => props.theme.textInput.padding.vertical.toString()}px;
+  padding-bottom: ${props =>
+    props.theme.textInput.padding.vertical.toString()}px;
+  padding-right: ${props =>
+    props.theme.textInput.padding.horizontal.toString()}px;
+  padding-left: ${props =>
+    props.theme.textInput.padding.horizontal.toString()}px;
+`;
+
+export const DeadlineInput = ({onPress, deadline}: DeadlineInputProps) => (
+  <TouchableOpacity onPress={() => onPress()} style={{flex: 1}}>
+    <DeadlineInputContainer>{getFullDateStr(deadline)}</DeadlineInputContainer>
+  </TouchableOpacity>
+);
