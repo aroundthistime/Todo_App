@@ -1,5 +1,6 @@
 import border from './border';
 import button from './button';
+import calender from './calender';
 import color from './color';
 import font from './font';
 import footer from './footer';
@@ -18,6 +19,7 @@ const theme = {
   button,
   footer,
   textInput,
+  calender,
 };
 
 export default theme;

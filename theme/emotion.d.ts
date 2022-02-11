@@ -1,6 +1,7 @@
 import '@emotion/react';
 import {BorderTheme} from './border';
 import {ButtonTheme} from './button';
+import {CalenderTheme} from './calender';
 import {ColorTheme} from './color';
 import {FontTheme} from './font';
 import {FooterTheme} from './footer';
@@ -20,5 +21,6 @@ declare module '@emotion/react' {
     button: ButtonTheme;
     footer: FooterTheme;
     textInput: TextInputTheme;
+    calender: CalenderTheme;
   }
 }
