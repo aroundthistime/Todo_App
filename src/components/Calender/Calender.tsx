@@ -6,7 +6,7 @@ import Button from '../Button/DefaultButton/Button';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import {useTheme} from '@emotion/react';
 import {useCalender} from './useCalender';
-import {FlatList, Text, Touchable, TouchableOpacity} from 'react-native';
+import {FlatList, Text, TouchableOpacity} from 'react-native';
 import {datesAreOnSameDay} from '../../utils/dates';
 
 type Props = {
@@ -24,7 +24,6 @@ const Calender = ({selectedDate, setSelectedDate}: Props) => {
     changeToNextMonth,
     arrowIconSize,
   } = useCalender();
-  console.log(selectedDate);
   return (
     <BoxContainer>
       <Calender.Header>
@@ -121,29 +120,17 @@ type DateCellsProps = {
 Calender.DateCells = React.memo(
   ({startDate, endDate, selectedDate, setSelectedDate}: DateCellsProps) => {
     const cells = [];
-    const {
-      calender: {
-        cell: {selectedCellColor},
-      },
-    } = useTheme();
     for (let i = 0; i < startDate.getDay(); i++) {
       cells.push(<Calender.EmptyCell />);
     }
     for (let i = startDate.getDate(); i < endDate.getDate(); i++) {
       const date = new Date(startDate.getFullYear(), startDate.getMonth(), i);
       cells.push(
-        <TouchableOpacity
-          style={{flex: 1 / 7}}
-          onPress={() => setSelectedDate(date)}>
-          <Calender.DateCell
-            style={{
-              backgroundColor: datesAreOnSameDay(date, selectedDate)
-                ? selectedCellColor
-                : 'white',
-            }}>
-            <Text>{date.getDate()}</Text>
-          </Calender.DateCell>
-        </TouchableOpacity>,
+        <Calender.DateCell
+          date={date}
+          isSelected={datesAreOnSameDay(date, selectedDate)}
+          onPress={() => setSelectedDate(date)}
+        />,
       );
     }
     return (
@@ -154,8 +141,38 @@ Calender.DateCells = React.memo(
 
 Calender.EmptyCell = React.memo(() => (
   <TouchableOpacity disabled={true} style={{flex: 1 / 7}}>
-    <Calender.DateCell />
+    <Calender.DateCellContainer />
   </TouchableOpacity>
 ));
+
+type DateCellProps = {
+  date: Date;
+  isSelected: boolean;
+  onPress: Function;
+};
+
+Calender.DateCell = React.memo(({date, isSelected, onPress}: DateCellProps) => {
+  const {
+    calender: {
+      cell: {selectedCellColor},
+    },
+  } = useTheme();
+  return (
+    <TouchableOpacity style={{flex: 1 / 7}} onPress={() => onPress()}>
+      <Calender.DateCellContainer
+        style={{
+          backgroundColor: isSelected ? selectedCellColor : 'white',
+        }}>
+        <Text>{date.getDate()}</Text>
+      </Calender.DateCellContainer>
+    </TouchableOpacity>
+  );
+});
+
+Calender.DateCellContainer = styled(Calender.Cell)`
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+`;
 
 export default Calender;
