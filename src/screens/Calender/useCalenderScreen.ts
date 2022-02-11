@@ -1,3 +1,4 @@
+import {ReactNativeStyle} from '@emotion/native';
 import {useTheme} from '@emotion/react';
 import {createSelector} from '@reduxjs/toolkit';
 import React, {useState} from 'react';
@@ -14,6 +15,7 @@ type ReturnType = {
     vertical: number;
     horizontal: number;
   };
+  todosListStyle: ReactNativeStyle;
 };
 
 export const useCalenderScreen = (): ReturnType => {
@@ -25,6 +27,7 @@ export const useCalenderScreen = (): ReturnType => {
   const {
     layout: {
       padding: {vertical, horizontal},
+      height,
     },
   } = useTheme();
   return {
@@ -34,6 +37,10 @@ export const useCalenderScreen = (): ReturnType => {
     screenContainerPadding: {
       vertical,
       horizontal,
+    },
+    todosListStyle: {
+      height: height * 0.3,
+      marginTop: 30,
     },
   };
 };

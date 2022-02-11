@@ -12,7 +12,10 @@ import {Todo} from '../@types/Todo';
 export type RootStackParamList = {
   Drawer: NavigatorScreenParams<DrawerParamList>;
   Todo: {todoId: number};
-  TodoForm: {todo?: Todo};
+  TodoForm: {
+    todo?: Todo;
+    date?: Date;
+  };
 };
 
 export const ROOT_NAVIGATION_SCREEN_NAMES: Record<

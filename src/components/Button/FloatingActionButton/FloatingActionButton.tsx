@@ -22,6 +22,7 @@ const FloatingActionButton = (props: Props) => {
         position: absolute;
         right: ${positionOffset.toString()}px;
         bottom: ${positionOffset.toString()}px;
+        z-index: 2;
       `}>
       <Button.Container
         style={css`

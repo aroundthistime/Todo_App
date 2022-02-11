@@ -7,10 +7,10 @@ type ReturnType = {
   iconSize: number;
 };
 
-export const useTodoAddButton = (): ReturnType => {
+export const useTodoAddButton = (date: Date): ReturnType => {
   const navigation = useNavigation<HomeDrawerNavigationProp>();
   const moveToTodoFormScreen = () => {
-    navigation.navigate('TodoForm', {});
+    navigation.navigate('TodoForm', {date: date});
   };
   const {
     button: {

@@ -27,7 +27,7 @@ type ReturnType = {
 
 export const useTodoFormScreen = (): ReturnType => {
   const {
-    params: {todo},
+    params: {todo, date},
   } = useRoute<RootStackScreenProps<'TodoForm'>['route']>();
   const navigation = useNavigation<RootStackNavigationProps<'TodoForm'>>();
   const dispatch = useDispatch();
@@ -39,7 +39,7 @@ export const useTodoFormScreen = (): ReturnType => {
     todo ? todo.importanceLevel : 'medium',
   );
   const [deadline, setDeadline] = useState<Date>(
-    todo ? new Date(todo.deadline) : new Date(),
+    todo ? new Date(todo.deadline) : date ? date : new Date(),
   );
   const saveTodo = () => {
     const validator = (): boolean => {

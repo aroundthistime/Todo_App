@@ -85,7 +85,7 @@ TodoInput.Input = styled.TextInput`
     ).toString()}px;
 `;
 
-export const ImportanceLevelSelectors = ({children}) => {
+export const ImportanceLevelSelectors = React.memo(({children}) => {
   const {
     footer: {gapBetweenButtons},
   } = useTheme();
@@ -109,7 +109,7 @@ export const ImportanceLevelSelectors = ({children}) => {
       )}
     </View>
   );
-};
+});
 
 type ImportanceLevelSelectorProps = {
   level: ImportanceLevel;

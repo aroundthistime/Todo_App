@@ -1,5 +1,4 @@
 import React from 'react';
-import {Text, View} from 'react-native';
 import {useTodoFormScreen} from './useTodoFormScreen';
 import {
   DeadlineInput,
