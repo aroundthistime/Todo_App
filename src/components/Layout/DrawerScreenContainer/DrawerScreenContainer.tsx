@@ -1,8 +1,7 @@
 import {ReactNativeStyle} from '@emotion/native';
 import React from 'react';
-import {TodosBgImage} from '../../../screens/Todos/styled';
 import ViewContainer from '../ViewContainer/ViewContainer';
-import {DrawerIcon} from './styled';
+import {DrawerIcon, DrawerScreenBgImage} from './styled';
 
 type Props = {
   children?: React.ReactNode;
@@ -11,11 +10,12 @@ type Props = {
 
 const DrawerScreenContainer: React.FC<Props> = ({children, style = {}}) => {
   return (
-    <ViewContainer style={{...style}}>
-      <TodosBgImage />
-      {children}
-      <DrawerIcon />
-    </ViewContainer>
+    <DrawerScreenBgImage>
+      <ViewContainer style={{...style, backgroundColor: 'transparent'}}>
+        {children}
+        <DrawerIcon />
+      </ViewContainer>
+    </DrawerScreenBgImage>
   );
 };
 

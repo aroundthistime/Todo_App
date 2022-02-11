@@ -26,8 +26,10 @@ export const useCalenderScreen = (): ReturnType => {
   const todos = useSelector(todosSelectorByDate);
   const {
     layout: {
-      padding: {vertical, horizontal},
-      height,
+      padding: {horizontal},
+      drawerScreen: {
+        padding: {vertical},
+      },
     },
   } = useTheme();
   return {
@@ -39,7 +41,7 @@ export const useCalenderScreen = (): ReturnType => {
       horizontal,
     },
     todosListStyle: {
-      height: height * 0.3,
+      flex: 1,
       marginTop: 30,
     },
   };

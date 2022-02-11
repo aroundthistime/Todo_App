@@ -4,6 +4,11 @@ export interface LayoutTheme {
   width: number;
   height: number;
   padding: {[key in string]: number};
+  drawerScreen: {
+    padding: {
+      vertical: number;
+    };
+  };
   borderRadius: number;
   indicatorSize: number;
   rowGap: number;
@@ -16,6 +21,11 @@ const layout: LayoutTheme = {
   padding: {
     horizontal: 20,
     vertical: 20,
+  },
+  drawerScreen: {
+    padding: {
+      vertical: 80,
+    },
   },
   borderRadius: 10,
   indicatorSize: 16,
