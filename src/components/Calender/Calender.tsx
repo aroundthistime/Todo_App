@@ -125,11 +125,12 @@ Calender.DateCells = React.memo(
     }
     for (let i = startDate.getDate(); i < endDate.getDate(); i++) {
       const date = new Date(startDate.getFullYear(), startDate.getMonth(), i);
+      const isSelected = datesAreOnSameDay(date, selectedDate);
       cells.push(
         <Calender.DateCell
           date={date}
-          isSelected={datesAreOnSameDay(date, selectedDate)}
-          onPress={() => setSelectedDate(date)}
+          isSelected={isSelected}
+          onPress={isSelected ? () => 1 : () => setSelectedDate(date)}
         />,
       );
     }
