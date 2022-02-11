@@ -11,10 +11,7 @@ type ReturnType = {
   todos: Todo[];
   selectedDate: Date;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
-  screenContainerPadding: {
-    vertical: number;
-    horizontal: number;
-  };
+  screenContainerStyle: ReactNativeStyle;
   todosListStyle: ReactNativeStyle;
 };
 
@@ -26,9 +23,9 @@ export const useCalenderScreen = (): ReturnType => {
   const todos = useSelector(todosSelectorByDate);
   const {
     layout: {
-      padding: {horizontal},
+      padding: {horizontal: paddingHorizontal, vertical: paddingBottom},
       drawerScreen: {
-        padding: {vertical},
+        padding: {vertical: paddingTop},
       },
     },
   } = useTheme();
@@ -36,9 +33,10 @@ export const useCalenderScreen = (): ReturnType => {
     todos,
     selectedDate,
     setSelectedDate,
-    screenContainerPadding: {
-      vertical,
-      horizontal,
+    screenContainerStyle: {
+      paddingTop,
+      paddingBottom: 150,
+      paddingHorizontal,
     },
     todosListStyle: {
       flex: 1,

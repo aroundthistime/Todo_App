@@ -13,15 +13,11 @@ const CalenderScreen = () => {
     todos,
     selectedDate,
     setSelectedDate,
-    screenContainerPadding,
+    screenContainerStyle,
     todosListStyle,
   } = useCalenderScreen();
   return (
-    <DrawerScreenContainer
-      style={{
-        paddingVertical: screenContainerPadding.vertical,
-        paddingHorizontal: screenContainerPadding.horizontal,
-      }}>
+    <DrawerScreenContainer style={screenContainerStyle}>
       <Calender selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       <Todos date={selectedDate} todos={todos} style={todosListStyle} />
       {(datesAreOnSameDay(new Date(), selectedDate) ||
