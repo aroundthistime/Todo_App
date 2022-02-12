@@ -10,6 +10,7 @@ const BgImageSeletionScreen = () => {
         require('../../../assets/images/2.png'),
         require('../../../assets/images/3.png'),
         require('../../../assets/images/4.png'),
+        require('../../../assets/images/3.png'),
       ]}
     />
   );

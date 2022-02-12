@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useTheme} from '@emotion/react';
 import {ImageBackground} from 'react-native';
 import {useSelector} from 'react-redux';
+import {bgImageSelector} from '../../../modules/bgImage';
 
 const DrawerIconContainer = styled.TouchableOpacity`
   position: absolute;
@@ -26,14 +27,14 @@ export const DrawerIcon = React.memo(() => {
 });
 
 export const DrawerScreenBgImage = ({children}) => {
-  // const backgroundImage = useSelector(state => state.)
+  const bgImage = useSelector(bgImageSelector);
   return (
     <ImageBackground
       style={{
         flex: 1,
         justifyContent: 'center',
       }}
-      source={require(`../../../../assets/images/${3}.png`)}
+      source={require('../../../../assets/images/2.png')}
       resizeMode="cover">
       {children}
     </ImageBackground>

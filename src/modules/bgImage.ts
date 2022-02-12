@@ -1,9 +1,10 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {useSelector} from 'react-redux';
 
-type BgImage = 1 | 2 | 3;
+type BgImage = 1 | 2 | 3 | 4;
 
 type BgImageStatus = {
-  image: 1 | 2 | 3;
+  image: BgImage;
 };
 
 const initialState: BgImageStatus = {
@@ -20,4 +21,9 @@ const bgImageSlice = createSlice({
   },
 });
 
-export default bgImageSlice;
+export const {changeBgImage} = bgImageSlice.actions;
+
+export const bgImageSelector = state =>
+  state.bgImage?.image ? state.bgImage.image : 1;
+
+export default bgImageSlice.reducer;
