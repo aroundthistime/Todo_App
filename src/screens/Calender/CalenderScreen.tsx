@@ -9,15 +9,10 @@ import {datesAreOnSameDay} from '../../utils/dates';
 import {useCalenderScreen} from './useCalenderScreen';
 
 const CalenderScreen = () => {
-  const {
-    todos,
-    selectedDate,
-    setSelectedDate,
-    screenContainerStyle,
-    todosListStyle,
-  } = useCalenderScreen();
+  const {todos, selectedDate, setSelectedDate, todosListStyle} =
+    useCalenderScreen();
   return (
-    <DrawerScreenContainer style={screenContainerStyle}>
+    <DrawerScreenContainer>
       <Calender selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       <Todos date={selectedDate} todos={todos} style={todosListStyle} />
       {(datesAreOnSameDay(new Date(), selectedDate) ||

@@ -4,7 +4,6 @@ import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useTheme} from '@emotion/react';
 import {ImageBackground} from 'react-native';
-import drawerScreenBackgroundImage from '../../../../assets/images/drawer-screen-background.png';
 
 const DrawerIconContainer = styled.TouchableOpacity`
   position: absolute;
@@ -31,8 +30,13 @@ export const DrawerScreenBgImage = ({children}) => (
       flex: 1,
       justifyContent: 'center',
     }}
-    source={drawerScreenBackgroundImage}
+    source={require(`../../../../assets/images/${3}.png`)}
     resizeMode="cover">
     {children}
   </ImageBackground>
 );
+
+console.log('이미지 개수 : ');
+// fs.readdir('../../../../assets/images', (err, files) => {
+//   console.log(files.length);
+// });

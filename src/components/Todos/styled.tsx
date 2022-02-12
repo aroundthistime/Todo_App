@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback, useMemo} from 'react';
 import styled, {css} from '@emotion/native';
 import {useTheme} from '@emotion/react';
 import {Todo} from '../../@types/Todo';
@@ -25,19 +25,28 @@ export const TodosList = React.memo((props: TodosListProps) => {
     },
     layout: {columnGap},
   } = useTheme();
+  const renderItem = useCallback(
+    ({item: todo}) => <TodoItem todo={todo} />,
+    [],
+  );
+  const renderHiddenItem = useCallback(
+    ({item: todo}) => <HiddenButtons todoId={todo.id} cleared={todo.cleared} />,
+    [],
+  );
+  const keyExtractor = useCallback(todo => todo.id.toString(), []);
+  const rightOpenValue = useMemo(() => -(buttonWidth * 2 + columnGap), []);
   return props.todos.length === 0 ? (
     <NoTodo />
   ) : (
     <SwipeListView
       data={props.todos}
-      renderItem={({item: todo}) => <TodoItem todo={todo} />}
-      renderHiddenItem={({item: todo}) => (
-        <HiddenButtons todoId={todo.id} cleared={todo.cleared} />
-      )}
-      keyExtractor={todo => todo.id.toString()}
-      rightOpenValue={-(buttonWidth * 2 + columnGap)}
+      renderItem={renderItem}
+      renderHiddenItem={renderHiddenItem}
+      keyExtractor={keyExtractor}
+      rightOpenValue={rightOpenValue}
       disableRightSwipe={true}
       showsVerticalScrollIndicator={false}
+      removeClippedSubviews={true}
     />
   );
 });

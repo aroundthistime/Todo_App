@@ -1,6 +1,6 @@
 import {css, ReactNativeStyle} from '@emotion/native';
 import {useTheme} from '@emotion/react';
-import React from 'react';
+import React, {useMemo} from 'react';
 import {View} from 'react-native';
 import {Todo} from '../../@types/Todo';
 import {getFullDateStr} from '../../utils/dates';
@@ -16,15 +16,16 @@ type Props = {
 };
 
 const Todos = ({todos, date, style = {}}: Props) => {
-  const clearedTodosCount = countClearedTodos(todos);
-  const {
-    layout: {height},
-  } = useTheme();
+  const clearedTodosCount = useMemo(() => countClearedTodos(todos), [todos]);
+  const percentage = useMemo(
+    () => parseInt((clearedTodosCount / todos.length) * 100),
+    [clearedTodosCount, todos.length],
+  );
   return (
     <BoxContainer
       style={{
         ...css`
-          height: ${(height * 0.6).toString()}px;
+          flex: 1;
         `,
         ...style,
       }}>
@@ -40,9 +41,7 @@ const Todos = ({todos, date, style = {}}: Props) => {
           </BoxContainer.SubTitle>
         </View>
         <BoxContainer.HeaderRight>
-          <PercentageCircle
-            percentage={parseInt((clearedTodosCount / todos.length) * 100)}
-          />
+          <PercentageCircle percentage={percentage} />
         </BoxContainer.HeaderRight>
       </BoxContainer.Header>
       <TodosList todos={todos} />

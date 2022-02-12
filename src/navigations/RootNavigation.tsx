@@ -8,6 +8,7 @@ import TodoFormScreen from '../screens/TodoForm/TodoFormScreen';
 import TodoScreen from '../screens/Todo/TodoScreen';
 import {NavigatorScreenParams} from '@react-navigation/native';
 import {Todo} from '../@types/Todo';
+import BgImageSeletionScreen from '../screens/BgImageSelection/BgImageSelectionScreen';
 
 export type RootStackParamList = {
   Drawer: NavigatorScreenParams<DrawerParamList>;
@@ -16,6 +17,7 @@ export type RootStackParamList = {
     todo?: Todo;
     date?: Date;
   };
+  BgImageSelection: undefined;
 };
 
 export const ROOT_NAVIGATION_SCREEN_NAMES: Record<
@@ -25,6 +27,7 @@ export const ROOT_NAVIGATION_SCREEN_NAMES: Record<
   Drawer: 'Drawer',
   Todo: 'Todo',
   TodoForm: 'TodoForm',
+  BgImageSelection: 'BgImageSelection',
 };
 
 const Stack = createStackNavigator<RootStackParamList>();
@@ -47,6 +50,15 @@ const RootNavigation = () => (
         component={TodoFormScreen}
         options={{
           headerTitle: '투두 작성',
+          headerShown: true,
+          headerTitleAlign: 'center',
+        }}
+      />
+      <Stack.Screen
+        name={ROOT_NAVIGATION_SCREEN_NAMES.BgImageSelection}
+        component={BgImageSeletionScreen}
+        options={{
+          headerTitle: '배경화면 설정',
           headerShown: true,
           headerTitleAlign: 'center',
         }}

@@ -5,14 +5,9 @@ import Todos from '../../components/Todos/Todos';
 import {useTodosScreen} from './useTodosScreen';
 
 const TodosScreen = () => {
-  const {drawerScreenContainerStyle, todos} = useTodosScreen();
+  const {todos} = useTodosScreen();
   return (
-    <DrawerScreenContainer
-      style={{
-        ...drawerScreenContainerStyle,
-        backgroundColor: 'white',
-        position: 'relative',
-      }}>
+    <DrawerScreenContainer>
       <Todos date={new Date()} todos={todos} />
       <TodoAddButton />
     </DrawerScreenContainer>

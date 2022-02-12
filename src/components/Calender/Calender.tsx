@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import styled, {css} from '@emotion/native';
 import {Month} from '../../@classes/MonthClass';
 import BoxContainer from '../Layout/BoxContainer/BoxContainer';
@@ -92,8 +92,11 @@ Calender.DayCells = React.memo(() => {
     color: {skyblue},
   } = useTheme();
   const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'] as const;
-  const getTextColor = (day: string): string =>
-    day === 'SUN' ? 'red' : day === 'SAT' ? skyblue : 'black';
+  const getTextColor = useCallback(
+    (day: string): string =>
+      day === 'SUN' ? 'red' : day === 'SAT' ? skyblue : 'black',
+    [skyblue],
+  );
   return (
     <Calender.Row>
       {days.map(day => (
@@ -134,8 +137,15 @@ Calender.DateCells = React.memo(
         />,
       );
     }
+    const renderItem = useCallback(({item}) => item, []);
+    const keyExtractor = useCallback((_, index) => index, []);
     return (
-      <FlatList data={cells} renderItem={({item}) => item} numColumns={7} />
+      <FlatList
+        data={cells}
+        renderItem={renderItem}
+        keyExtractor={keyExtractor}
+        numColumns={7}
+      />
     );
   },
 );

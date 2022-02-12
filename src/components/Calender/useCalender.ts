@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 
 type ReturnType = {
   startDate: Date;
@@ -22,7 +22,7 @@ export const useCalender = (): ReturnType => {
       month: date.getMonth(),
     };
   };
-  const getStartAndEndDate = (date: Date) => {
+  const getStartAndEndDate = useCallback((date: Date) => {
     const {year, month} = getYearAndMonthFromDate(date);
     const startDate = new Date(year, month, 1);
     const endDate = new Date(year, month + 1, 0);
@@ -30,14 +30,14 @@ export const useCalender = (): ReturnType => {
       startDate,
       endDate,
     };
-  };
+  }, []);
   const [dateRange, setDateRange] = useState<DateRange>(
     getStartAndEndDate(new Date()),
   );
 
-  const getYearAndMonthFromCurrentMonth = () => {
+  const getYearAndMonthFromCurrentMonth = useCallback(() => {
     return getYearAndMonthFromDate(dateRange.startDate);
-  };
+  }, [dateRange.startDate]);
 
   const changeMonth = (offset: number) => {
     const {year, month} = getYearAndMonthFromCurrentMonth();

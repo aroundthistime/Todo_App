@@ -24,7 +24,7 @@ const layout: LayoutTheme = {
   },
   drawerScreen: {
     padding: {
-      vertical: 80,
+      vertical: 90,
     },
   },
   borderRadius: 10,
