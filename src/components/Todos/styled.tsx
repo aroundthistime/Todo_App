@@ -23,7 +23,10 @@ export const TodosList = React.memo((props: TodosListProps) => {
     button: {
       default: {width: buttonWidth},
     },
-    layout: {columnGap},
+    layout: {
+      padding: {horizontal: paddingHorizontal},
+      columnGap,
+    },
   } = useTheme();
   const renderItem = useCallback(
     ({item: todo}) => <TodoItem todo={todo} />,
@@ -45,8 +48,12 @@ export const TodosList = React.memo((props: TodosListProps) => {
       keyExtractor={keyExtractor}
       rightOpenValue={rightOpenValue}
       disableRightSwipe={true}
-      showsVerticalScrollIndicator={false}
+      // showsVerticalScrollIndicator={false}
       removeClippedSubviews={true}
+      style={{
+        marginHorizontal: -paddingHorizontal,
+        paddingHorizontal,
+      }}
     />
   );
 });
