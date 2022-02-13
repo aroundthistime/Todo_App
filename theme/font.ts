@@ -4,9 +4,9 @@ export interface FontTheme {
 
 const font: FontTheme = {
   size: {
-    default: 18,
-    large: 25,
-    small: 16,
+    default: 16,
+    large: 20,
+    small: 13,
   },
 };
 

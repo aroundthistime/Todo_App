@@ -11,7 +11,8 @@ type Props = {
 const Container = styled(ViewContainer)`
   padding-top: ${props =>
     props.theme.layout.drawerScreen.padding.vertical.toString()}px;
-  padding-bottom: 150px;
+  padding-bottom: ${props =>
+    props.theme.layout.drawerScreen.padding.vertical.toString()}px;
   padding-left: ${props => props.theme.layout.padding.horizontal.toString()}px;
   padding-right: ${props => props.theme.layout.padding.horizontal.toString()}px;
   background-color: transparent;

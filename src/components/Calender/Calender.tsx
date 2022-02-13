@@ -51,8 +51,6 @@ const Calender = ({selectedDate, setSelectedDate}: Props) => {
 };
 
 Calender.Section = styled.View`
-  padding-top: ${props => props.theme.layout.padding.vertical.toString()}px;
-  padding-bottom: ${props => props.theme.layout.padding.vertical.toString()}px;
   padding-right: ${props => props.theme.layout.padding.horizontal.toString()}px;
   padding-left: ${props => props.theme.layout.padding.horizontal.toString()}px;
 `;
@@ -105,6 +103,7 @@ Calender.DayCells = React.memo(() => {
             style={css`
               font-weight: bold;
               color: ${getTextColor(day)};
+              font-size: 12px;
               text-align: center;
             `}>
             {day}

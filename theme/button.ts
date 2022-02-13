@@ -34,7 +34,7 @@ const button = {
     },
   },
   floatingActionButton: {
-    size: 70,
+    size: 60,
     iconSize: 30,
     positionOffset: 50,
     color: color.coral,

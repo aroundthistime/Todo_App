@@ -46,7 +46,7 @@ export const QuoteCloseButton = (props: QuoteCloseButtonProps) => {
 };
 
 QuoteCloseButton.Container = styled.TouchableOpacity`
-  width: 200px;
+  width: 130px;
   padding-top: 15px;
   padding-bottom: 15px;
   justify-content: center;

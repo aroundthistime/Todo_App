@@ -30,7 +30,7 @@ const layout: LayoutTheme = {
   borderRadius: 10,
   indicatorSize: 16,
   rowGap: 20,
-  columnGap: 30,
+  columnGap: 20,
 };
 
 export default layout;

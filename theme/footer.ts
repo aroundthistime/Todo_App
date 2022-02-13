@@ -10,7 +10,7 @@ export type FooterTheme = {
 };
 
 const footer = {
-  height: 80,
+  height: 70,
   backgroundColor: '#F7F7F7',
   padding: {
     horizontal: 20,

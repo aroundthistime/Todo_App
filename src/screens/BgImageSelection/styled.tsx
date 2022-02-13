@@ -1,9 +1,11 @@
 import React, {useCallback, useMemo} from 'react';
 import styled, {css, ReactNativeStyle} from '@emotion/native';
-import {FlatList, Image, View} from 'react-native';
+import {FlatList, Image, View, Platform} from 'react-native';
 import {useTheme} from '@emotion/react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
-import ImagePicker, {launchImageLibrary} from 'react-native-image-picker';
+import RNFS from 'react-native-fs';
+import {launchImageLibrary} from 'react-native-image-picker';
+import {showToast} from '../../utils/toastHandler';
 
 const NUM_COLUMNS = 3;
 
@@ -144,8 +146,19 @@ const BgImageAddButton = React.memo(({style = {}}) => {
         mediaType: 'photo',
       },
       response => {
-        if (response.assets) {
+        if (response.assets && response.assets.length === 1) {
+          const imagePath = `${
+            RNFS.DocumentDirectoryPath
+          }/${new Date().toISOString()}.jpg`.replace(/:/g, '-');
           const image = response.assets[0];
+          if (Platform.OS === 'android') {
+            RNFS.copyFile(image.uri as string, imagePath)
+              .then(res => {})
+              .catch(err => {
+                showToast('이미지를 불러오는데 실패했습니다');
+              });
+            showToast(image.uri as string);
+          }
         }
       },
     );
