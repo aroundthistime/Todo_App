@@ -1,20 +1,29 @@
 import React, {useCallback, useMemo} from 'react';
 import styled, {css, ReactNativeStyle} from '@emotion/native';
-import {FlatList, Image, View, Platform, Alert} from 'react-native';
+import {
+  FlatList,
+  Image,
+  View,
+  Platform,
+  Alert,
+  GestureResponderEvent,
+} from 'react-native';
 import {useTheme} from '@emotion/react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import RNFS from 'react-native-fs';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showToast} from '../../utils/toastHandler';
-import {BgImageObj} from './useBgImageSelectionScreen';
+import {BgImageObj, SelectImageFunction} from './useBgImageSelectionScreen';
+import {getSourceOfBgImage} from '../../modules/bgImage';
 
 const NUM_COLUMNS = 3;
 
 type BgImagesProps = {
   images: BgImageObj[];
+  selectImage: SelectImageFunction;
 };
 
-export const BgImages = React.memo(({images}: BgImagesProps) => {
+export const BgImages = React.memo(({images, selectImage}: BgImagesProps) => {
   const {
     layout: {
       padding: {horizontal: paddingHorizontal, vertical: paddingVertical},
@@ -32,6 +41,7 @@ export const BgImages = React.memo(({images}: BgImagesProps) => {
           image={image}
           style={{marginRight: getMarginRight(index)}}
           key={index}
+          onPress={(event: GestureResponderEvent) => selectImage(image.path)}
         />
       ) : (
         <BgImageAddButton />
@@ -68,28 +78,27 @@ const Seperator = styled.View`
 type BgImageProps = {
   image: BgImageObj;
   style?: ReactNativeStyle;
+  onPress: (event: GestureResponderEvent) => void;
 };
 
 const ItemContainer = styled.TouchableOpacity`
   flex: ${(1 / NUM_COLUMNS).toString()};
 `;
 
-const BgImage = React.memo(({image, style = {}}: BgImageProps) => {
+const BgImage = React.memo(({image, style = {}, onPress}: BgImageProps) => {
   const {
     layout: {width, height},
   } = useTheme();
   const aspectRatio = useMemo(() => width / height, [width, height]);
+  const source = useMemo(() => getSourceOfBgImage(image.path), [image.path]);
   const deleteImage = () => {
-    return (
-      RNFS.unlink(path)
-        .then(() => {
-          console.log('FILE DELETED');
-        })
-        // `unlink` will throw an error, if the item to unlink does not exist
-        .catch(err => {
-          console.log(err.message);
-        })
-    );
+    return RNFS.unlink(image.path as string)
+      .then(() => {
+        showToast('이미지가 삭제되었습니다');
+      })
+      .catch(err => {
+        showToast('오류가 발생했습니다 다시 시도해주세요');
+      });
   };
   const onLongPress = useCallback((event: GestureResponderEvent) => {
     Alert.alert('해당 이미지를 삭제하시겠습니까?', '', [
@@ -101,14 +110,17 @@ const BgImage = React.memo(({image, style = {}}: BgImageProps) => {
       },
       {
         text: '아니오',
-        onPress: () => 1,
+        onPress: undefined,
       },
     ]);
   }, []);
   return (
-    <ItemContainer onPress={image.setToBgImage} style={{...style}}>
+    <ItemContainer
+      onPress={onPress}
+      onLongPress={image.isCustom ? onLongPress : undefined}
+      style={{...style}}>
       <Image
-        source={image.source}
+        source={source}
         resizeMode={'cover'}
         style={{
           width: '100%',
@@ -158,32 +170,34 @@ const BgImageAddButton = React.memo(({style = {}}) => {
     },
     border: {lightGray: lightGrayBorder},
   } = useTheme();
-  const onPress = useCallback(async () => {
-    const result = await launchImageLibrary(
-      {
-        mediaType: 'photo',
-      },
-      response => {
-        console.log('RESPONSE', response);
-        if (response.assets && response.assets.length === 1) {
-          const imagePath = `${
-            RNFS.DocumentDirectoryPath
-          }/${new Date().toISOString()}.jpg`.replace(/:/g, '-');
-          const image = response.assets[0];
-          if (Platform.OS === 'android') {
-            RNFS.copyFile(image.uri as string, imagePath)
-              .then(res => {
-                console.log('결과 : ', res);
-              })
-              .catch(err => {
-                console.log('실패 ㅠ', err);
-                showToast('이미지를 불러오는데 실패했습니다');
-              });
+  const onPress = useCallback(
+    async () =>
+      await launchImageLibrary(
+        {
+          mediaType: 'photo',
+        },
+        response => {
+          console.log('RESPONSE', response);
+          if (response.assets && response.assets.length === 1) {
+            const imagePath = `${
+              RNFS.DocumentDirectoryPath
+            }/${new Date().toISOString()}.jpg`.replace(/:/g, '-');
+            const image = response.assets[0];
+            if (Platform.OS === 'android') {
+              RNFS.copyFile(image.uri as string, imagePath)
+                .then(res => {
+                  console.log('결과 : ', res);
+                })
+                .catch(err => {
+                  console.log('실패 ㅠ', err);
+                  showToast('이미지를 불러오는데 실패했습니다');
+                });
+            }
           }
-        }
-      },
-    );
-  }, []);
+        },
+      ),
+    [],
+  );
   return (
     <ItemContainer style={style} onPress={onPress}>
       <View

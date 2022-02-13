@@ -55,7 +55,7 @@ export const useTodoScreen = (): ReturnType => {
         },
         {
           text: '아니오',
-          onPress: () => 1,
+          onPress: undefined,
         },
       ],
     );
