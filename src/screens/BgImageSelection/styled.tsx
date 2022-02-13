@@ -1,6 +1,6 @@
 import React, {useCallback, useMemo} from 'react';
 import styled, {css, ReactNativeStyle} from '@emotion/native';
-import {FlatList, Image, View, Platform} from 'react-native';
+import {FlatList, Image, View, Platform, Alert} from 'react-native';
 import {useTheme} from '@emotion/react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import RNFS from 'react-native-fs';
@@ -79,6 +79,32 @@ const BgImage = React.memo(({image, style = {}}: BgImageProps) => {
     layout: {width, height},
   } = useTheme();
   const aspectRatio = useMemo(() => width / height, [width, height]);
+  const deleteImage = () => {
+    return (
+      RNFS.unlink(path)
+        .then(() => {
+          console.log('FILE DELETED');
+        })
+        // `unlink` will throw an error, if the item to unlink does not exist
+        .catch(err => {
+          console.log(err.message);
+        })
+    );
+  };
+  const onLongPress = useCallback((event: GestureResponderEvent) => {
+    Alert.alert('해당 이미지를 삭제하시겠습니까?', '', [
+      {
+        text: '예',
+        onPress: () => {
+          deleteImage();
+        },
+      },
+      {
+        text: '아니오',
+        onPress: () => 1,
+      },
+    ]);
+  }, []);
   return (
     <ItemContainer onPress={image.setToBgImage} style={{...style}}>
       <Image
@@ -138,6 +164,7 @@ const BgImageAddButton = React.memo(({style = {}}) => {
         mediaType: 'photo',
       },
       response => {
+        console.log('RESPONSE', response);
         if (response.assets && response.assets.length === 1) {
           const imagePath = `${
             RNFS.DocumentDirectoryPath

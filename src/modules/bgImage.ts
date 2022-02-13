@@ -1,4 +1,5 @@
 import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {Platform} from 'react-native';
 
 export type BgImage = number | string;
 
@@ -45,7 +46,9 @@ export const getSourceOfBgImage = (path: BgImage) => {
   } else if (path === 7) {
     return require('../../assets/images/7.png');
   } else {
-    return {uri: path};
+    return {
+      uri: Platform.OS === 'android' ? 'file://' + path : path,
+    };
   }
 };
 
