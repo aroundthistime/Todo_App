@@ -44,7 +44,7 @@ export const BgImages = React.memo(({images, selectImage}: BgImagesProps) => {
           onPress={(event: GestureResponderEvent) => selectImage(image.path)}
         />
       ) : (
-        <BgImageAddButton />
+        <BgImageAddButton style={{marginRight: getMarginRight(index)}} />
       ),
     [getMarginRight],
   );
@@ -163,7 +163,11 @@ const SelectedBgImageIcon = React.memo(() => {
   );
 });
 
-const BgImageAddButton = React.memo(({style = {}}) => {
+type BgImageAddButtonProps = {
+  style?: ReactNativeStyle;
+};
+
+const BgImageAddButton = React.memo(({style = {}}: BgImageAddButtonProps) => {
   const {
     icon: {
       size: {default: iconSize},
