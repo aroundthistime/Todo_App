@@ -1,8 +1,9 @@
 import React, {useCallback, useMemo} from 'react';
 import styled, {css, ReactNativeStyle} from '@emotion/native';
-import {FlatList, Image, Text, View} from 'react-native';
+import {FlatList, Image, View} from 'react-native';
 import {useTheme} from '@emotion/react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import ImagePicker, {launchImageLibrary} from 'react-native-image-picker';
 
 const NUM_COLUMNS = 3;
 
@@ -137,8 +138,21 @@ const BgImageAddButton = React.memo(({style = {}}) => {
     },
     border: {lightGray: lightGrayBorder},
   } = useTheme();
+  const onPress = useCallback(async () => {
+    const result = await launchImageLibrary(
+      {
+        mediaType: 'photo',
+      },
+      response => {
+        if (response.assets) {
+          const image = response.assets[0];
+        }
+      },
+    );
+    console.log(result);
+  }, []);
   return (
-    <ItemContainer style={style}>
+    <ItemContainer style={style} onPress={onPress}>
       <View
         style={css`
           justify-content: center;
