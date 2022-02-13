@@ -91,7 +91,6 @@ const BgImage = React.memo(({image, style = {}}: BgImageProps) => {
         }}
       />
       {image.isSelected && <SelectedBgImageIcon />}
-      {/* <Image source={{uri: image}} style={{width: 30}} /> */}
     </ItemContainer>
   );
 });
@@ -146,16 +145,17 @@ const BgImageAddButton = React.memo(({style = {}}) => {
           const image = response.assets[0];
           if (Platform.OS === 'android') {
             RNFS.copyFile(image.uri as string, imagePath)
-              .then(res => {})
+              .then(res => {
+                console.log('결과 : ', res);
+              })
               .catch(err => {
+                console.log('실패 ㅠ', err);
                 showToast('이미지를 불러오는데 실패했습니다');
               });
-            showToast(image.uri as string);
           }
         }
       },
     );
-    console.log(result);
   }, []);
   return (
     <ItemContainer style={style} onPress={onPress}>

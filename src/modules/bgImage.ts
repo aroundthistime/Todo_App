@@ -40,6 +40,10 @@ export const getSourceOfBgImage = (path: BgImage) => {
     return require('../../assets/images/4.png');
   } else if (path === 5) {
     return require('../../assets/images/5.png');
+  } else if (path === 6) {
+    return require('../../assets/images/6.png');
+  } else if (path === 7) {
+    return require('../../assets/images/7.png');
   } else {
     return {uri: path};
   }

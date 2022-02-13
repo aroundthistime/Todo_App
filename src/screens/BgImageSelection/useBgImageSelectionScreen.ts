@@ -25,7 +25,7 @@ export const useBgImageSelectionScreen = (): ReturnType => {
   const dispatch = useDispatch();
   const selectImage = (image: BgImage) => dispatch(changeBgImage(image));
 
-  const images: BgImageObj[] = range(1, 6).map(n => {
+  const images: BgImageObj[] = range(1, 8).map(n => {
     return {
       isCustom: false,
       source: getSourceOfBgImage(n),
@@ -34,15 +34,15 @@ export const useBgImageSelectionScreen = (): ReturnType => {
     };
   });
   RNFS.readDirAssets(RNFS.DocumentDirectoryPath).then(items => {
-    items.forEach(item => {
-      console.log(item);
+    console.log('ITEMS !!!!', items);
+    items.forEach(item =>
       images.push({
         isCustom: true,
         source: getSourceOfBgImage(item.path),
         isSelected: currentBgImage === item.path,
         setToBgImage: (event: GestureResponderEvent) => selectImage(item.path),
-      });
-    });
+      }),
+    );
   });
 
   return {

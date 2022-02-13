@@ -18,6 +18,7 @@ import QuoteScreen from './src/screens/Quote/QuoteScreen';
 LogBox.ignoreLogs([
   "[react-native-gesture-handler] Seems like you're using an old API with gesture components, check out new Gestures system!",
 ]);
+LogBox.ignoreLogs(['new NativeEventEmitter']);
 
 const App = () => {
   const {showQuote, closeQuote, closeQuoteFor24Hours} = useQuote();

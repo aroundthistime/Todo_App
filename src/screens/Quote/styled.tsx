@@ -2,8 +2,8 @@ import React from 'react';
 import styled from '@emotion/native';
 import ViewContainer from '../../components/Layout/ViewContainer/ViewContainer';
 
-export const QuoteBackground = styled(ViewContainer)`
-  background-color: lightcoral;
+export const QuoteContainer = styled(ViewContainer)`
+  flex: 1;
   padding-right: ${props => props.theme.layout.padding.horizontal.toString()}px;
   padding-left: ${props => props.theme.layout.padding.horizontal.toString()}px;
   padding-top: ${props => props.theme.layout.padding.vertical.toString()}px;

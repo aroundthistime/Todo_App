@@ -26,13 +26,14 @@ export const DrawerIcon = React.memo(() => {
   );
 });
 
-export const DrawerScreenBgImage = ({children}) => {
+export const DrawerScreenBgImage = ({children, style = {}}) => {
   const bgImageSource = useSelector(bgImageSourceSelector);
   return (
     <ImageBackground
       style={{
         flex: 1,
         justifyContent: 'center',
+        ...style,
       }}
       source={bgImageSource}
       resizeMode="cover">
