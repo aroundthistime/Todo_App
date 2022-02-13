@@ -46,7 +46,7 @@ export const BgImages = React.memo(({images, selectImage}: BgImagesProps) => {
       ) : (
         <BgImageAddButton style={{marginRight: getMarginRight(index)}} />
       ),
-    [getMarginRight],
+    [getMarginRight, selectImage],
   );
   const itemSeparatorComponent = useCallback(() => <Seperator />, []);
   return (
@@ -87,12 +87,11 @@ const ItemContainer = styled.TouchableOpacity`
 
 const BgImage = React.memo(({image, style = {}, onPress}: BgImageProps) => {
   const {
-    layout: {width, height},
+    layout: {aspectRatio},
   } = useTheme();
-  const aspectRatio = useMemo(() => width / height, [width, height]);
   const source = useMemo(() => getSourceOfBgImage(image.path), [image.path]);
-  const deleteImage = () => {
-    return RNFS.unlink(image.path as string)
+  const deleteImage = async () => {
+    await RNFS.unlink(image.path as string)
       .then(() => {
         showToast('이미지가 삭제되었습니다');
       })
@@ -169,6 +168,7 @@ type BgImageAddButtonProps = {
 
 const BgImageAddButton = React.memo(({style = {}}: BgImageAddButtonProps) => {
   const {
+    layout: {aspectRatio},
     icon: {
       size: {default: iconSize},
     },
@@ -209,6 +209,7 @@ const BgImageAddButton = React.memo(({style = {}}: BgImageAddButtonProps) => {
           justify-content: center;
           align-items: center;
           flex: 1;
+          aspect-ratio: ${aspectRatio.toString()};
           border-radius: 10px;
           ${lightGrayBorder('top', 'bottom', 'right', 'left')};
           border-width: 1.5px;

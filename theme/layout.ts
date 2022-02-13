@@ -3,6 +3,7 @@ import {Dimensions} from 'react-native';
 export interface LayoutTheme {
   width: number;
   height: number;
+  aspectRatio: number;
   padding: {[key in string]: number};
   drawerScreen: {
     padding: {
@@ -18,6 +19,9 @@ export interface LayoutTheme {
 const layout: LayoutTheme = {
   width: Dimensions.get('window').width,
   height: Dimensions.get('window').height,
+  get aspectRatio() {
+    return this.width / this.height;
+  },
   padding: {
     horizontal: 20,
     vertical: 20,
