@@ -1,5 +1,5 @@
 import {ReactNativeStyle} from '@emotion/native';
-import React from 'react';
+import React, {useMemo} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
 /** React Native Percentage Circle 참고
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
 });
 
 type Props = {
-  color: string;
+  color: string | string[];
   bgcolor?: string;
   innerColor?: string;
   radius: number;
@@ -56,7 +56,7 @@ type Props = {
 };
 
 const PercentageCircleLibrary = ({
-  color,
+  color: colorProps,
   bgcolor = '#e3e3e3',
   innerColor = 'white',
   radius,
@@ -73,7 +73,23 @@ const PercentageCircleLibrary = ({
   } else {
     rightTransformerDegree = percent * 3.6 + 'deg';
   }
-
+  const color: string = useMemo(() => {
+    if (typeof colorProps === 'string') {
+      return colorProps;
+    } else {
+      if (colorProps.length === 1) {
+        return colorProps[0];
+      } else {
+        if (percent === 100) {
+          return colorProps[colorProps.length - 1];
+        } else {
+          return colorProps[
+            parseInt(percent / (100 / (colorProps.length - 1)))
+          ];
+        }
+      }
+    }
+  }, [colorProps, percent]);
   return (
     <View
       style={[

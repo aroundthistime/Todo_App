@@ -8,14 +8,14 @@ type Props = {
 
 const PercentageCircle = (props: Props) => {
   const {
-    color: {coral},
+    color: {coral, yellow, green},
     font: {size},
   } = useTheme();
   return (
     <PercentageCircleLibrary
       radius={30}
       percent={props.percentage}
-      color={coral}
+      color={[coral, yellow, green]}
       textStyle={{fontSize: size.small}}
     />
   );
