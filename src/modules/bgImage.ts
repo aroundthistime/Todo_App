@@ -1,7 +1,6 @@
-import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-import {useSelector} from 'react-redux';
+import {createSelector, createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-type BgImage = 1 | 2 | 3 | 4;
+export type BgImage = number | string;
 
 type BgImageStatus = {
   image: BgImage;
@@ -25,5 +24,25 @@ export const {changeBgImage} = bgImageSlice.actions;
 
 export const bgImageSelector = state =>
   state.bgImage?.image ? state.bgImage.image : 1;
+
+export const bgImageSourceSelector = createSelector(bgImageSelector, image =>
+  getSourceOfBgImage(image),
+);
+
+export const getSourceOfBgImage = (path: BgImage) => {
+  if (path === 1) {
+    return require('../../assets/images/1.png');
+  } else if (path === 2) {
+    return require('../../assets/images/2.png');
+  } else if (path === 3) {
+    return require('../../assets/images/3.png');
+  } else if (path === 4) {
+    return require('../../assets/images/4.png');
+  } else if (path === 5) {
+    return require('../../assets/images/5.png');
+  } else {
+    return {uri: path};
+  }
+};
 
 export default bgImageSlice.reducer;

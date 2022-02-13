@@ -6,12 +6,12 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import RNFS from 'react-native-fs';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {showToast} from '../../utils/toastHandler';
+import {BgImageObj} from './useBgImageSelectionScreen';
 
 const NUM_COLUMNS = 3;
 
 type BgImagesProps = {
-  images: string[];
-  //   images: any[];
+  images: BgImageObj[];
 };
 
 export const BgImages = React.memo(({images}: BgImagesProps) => {
@@ -30,10 +30,8 @@ export const BgImages = React.memo(({images}: BgImagesProps) => {
       image !== false ? (
         <BgImage
           image={image}
-          onPress={() => 1}
           style={{marginRight: getMarginRight(index)}}
           key={index}
-          isSelected={true}
         />
       ) : (
         <BgImageAddButton />
@@ -68,10 +66,7 @@ const Seperator = styled.View`
 `;
 
 type BgImageProps = {
-  image: any;
-  //   image : string;
-  isSelected: boolean;
-  onPress: Function;
+  image: BgImageObj;
   style?: ReactNativeStyle;
 };
 
@@ -79,29 +74,27 @@ const ItemContainer = styled.TouchableOpacity`
   flex: ${(1 / NUM_COLUMNS).toString()};
 `;
 
-const BgImage = React.memo(
-  ({image, isSelected, onPress, style = {}}: BgImageProps) => {
-    const {
-      layout: {width, height},
-    } = useTheme();
-    const aspectRatio = useMemo(() => width / height, [width, height]);
-    return (
-      <ItemContainer onPress={() => onPress()} style={{...style}}>
-        <Image
-          source={image}
-          resizeMode={'cover'}
-          style={{
-            width: '100%',
-            height: undefined,
-            aspectRatio,
-          }}
-        />
-        {isSelected && <SelectedBgImageIcon />}
-        {/* <Image source={{uri: image}} style={{width: 30}} /> */}
-      </ItemContainer>
-    );
-  },
-);
+const BgImage = React.memo(({image, style = {}}: BgImageProps) => {
+  const {
+    layout: {width, height},
+  } = useTheme();
+  const aspectRatio = useMemo(() => width / height, [width, height]);
+  return (
+    <ItemContainer onPress={image.setToBgImage} style={{...style}}>
+      <Image
+        source={image.source}
+        resizeMode={'cover'}
+        style={{
+          width: '100%',
+          height: undefined,
+          aspectRatio,
+        }}
+      />
+      {image.isSelected && <SelectedBgImageIcon />}
+      {/* <Image source={{uri: image}} style={{width: 30}} /> */}
+    </ItemContainer>
+  );
+});
 
 const IconContainer = styled.View`
   justify-content: center;

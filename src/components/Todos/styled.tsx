@@ -48,7 +48,6 @@ export const TodosList = React.memo((props: TodosListProps) => {
       keyExtractor={keyExtractor}
       rightOpenValue={rightOpenValue}
       disableRightSwipe={true}
-      // showsVerticalScrollIndicator={false}
       removeClippedSubviews={true}
       style={{
         marginHorizontal: -paddingHorizontal,
