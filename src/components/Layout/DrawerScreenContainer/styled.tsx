@@ -3,9 +3,6 @@ import styled from '@emotion/native';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import {useTheme} from '@emotion/react';
-import {ImageBackground} from 'react-native';
-import {useSelector} from 'react-redux';
-import {bgImageSourceSelector} from '../../../modules/bgImage';
 
 const DrawerIconContainer = styled.TouchableOpacity`
   position: absolute;
@@ -25,23 +22,3 @@ export const DrawerIcon = React.memo(() => {
     </DrawerIconContainer>
   );
 });
-
-export const DrawerScreenBgImage = ({children, style = {}}) => {
-  const bgImageSource = useSelector(bgImageSourceSelector);
-  return (
-    <ImageBackground
-      style={{
-        flex: 1,
-        justifyContent: 'center',
-        ...style,
-      }}
-      source={bgImageSource}
-      resizeMode="cover">
-      {children}
-    </ImageBackground>
-  );
-};
-
-// fs.readdir('../../../../assets/images', (err, files) => {
-//   console.log(files.length);
-// });

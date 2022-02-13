@@ -1,14 +1,5 @@
 import React from 'react';
 import styled from '@emotion/native';
-import ViewContainer from '../../components/Layout/ViewContainer/ViewContainer';
-
-export const QuoteContainer = styled(ViewContainer)`
-  flex: 1;
-  padding-right: ${props => props.theme.layout.padding.horizontal.toString()}px;
-  padding-left: ${props => props.theme.layout.padding.horizontal.toString()}px;
-  padding-top: ${props => props.theme.layout.padding.vertical.toString()}px;
-  padding-bottom: ${props => props.theme.layout.padding.vertical.toString()}px;
-`;
 
 export const QuoteMain = styled.View`
   flex: 1;

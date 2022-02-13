@@ -1,7 +1,8 @@
 import styled, {ReactNativeStyle} from '@emotion/native';
 import React from 'react';
+import BgImageContainer from '../BgImageContainer/BgImageContainer';
 import ViewContainer from '../ViewContainer/ViewContainer';
-import {DrawerIcon, DrawerScreenBgImage} from './styled';
+import {DrawerIcon} from './styled';
 
 type Props = {
   children?: React.ReactNode;
@@ -20,12 +21,12 @@ const Container = styled(ViewContainer)`
 
 const DrawerScreenContainer: React.FC<Props> = ({children, style = {}}) => {
   return (
-    <DrawerScreenBgImage>
+    <BgImageContainer>
       <Container style={{...style}}>
         {children}
         <DrawerIcon />
       </Container>
-    </DrawerScreenBgImage>
+    </BgImageContainer>
   );
 };
 
