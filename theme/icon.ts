@@ -5,6 +5,9 @@ export interface IconTheme {
 const icon: IconTheme = {
   size: {
     default: 30,
+    get container() {
+      return this.default + 10;
+    },
   },
 };
 

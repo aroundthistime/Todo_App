@@ -1,6 +1,6 @@
 import React, {useCallback, useMemo} from 'react';
 import styled, {css, ReactNativeStyle} from '@emotion/native';
-import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, Image, Text, View} from 'react-native';
 import {useTheme} from '@emotion/react';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
@@ -23,15 +23,18 @@ export const BgImages = React.memo(({images}: BgImagesProps) => {
     [paddingHorizontal],
   );
   const renderItem = useCallback(
-    ({item: image, index}) => (
-      <BgImage
-        image={image}
-        onPress={() => 1}
-        style={{marginRight: getMarginRight(index)}}
-        key={index}
-        isSelected={true}
-      />
-    ),
+    ({item: image, index}) =>
+      image !== false ? (
+        <BgImage
+          image={image}
+          onPress={() => 1}
+          style={{marginRight: getMarginRight(index)}}
+          key={index}
+          isSelected={true}
+        />
+      ) : (
+        <BgImageAddButton />
+      ),
     [getMarginRight],
   );
   const itemSeparatorComponent = useCallback(() => <Seperator />, []);
@@ -47,7 +50,7 @@ export const BgImages = React.memo(({images}: BgImagesProps) => {
         paddingHorizontal,
         backgroundColor: 'white',
       }}
-      data={images}
+      data={[...images, false]}
       renderItem={renderItem}
       ItemSeparatorComponent={itemSeparatorComponent}
       numColumns={NUM_COLUMNS}
@@ -88,8 +91,6 @@ const BgImage = React.memo(
             width: '100%',
             height: undefined,
             aspectRatio,
-            borderColor: 'orange',
-            borderWidth: 5,
           }}
         />
         {isSelected && <SelectedBgImageIcon />}
@@ -99,48 +100,61 @@ const BgImage = React.memo(
   },
 );
 
+const IconContainer = styled.View`
+  justify-content: center;
+  align-items: center;
+  width: ${props => props.theme.icon.size.container.toString()}px;
+  height: ${props => props.theme.icon.size.container.toString()}px;
+  border-radius: ${props => (props.theme.icon.size.container / 2).toString()}px;
+  ${props => props.theme.shadow.default};
+`;
+
 const SelectedBgImageIcon = React.memo(() => {
   const {
     icon: {
-      size: {default: iconSize},
+      size: {container: iconContainerSize, default: iconSize},
     },
   } = useTheme();
-  const iconContainerSize = useMemo(() => iconSize + 10, [iconSize]);
   return (
-    <View
+    <IconContainer
       style={css`
         background-color: orange;
         position: absolute;
-        justify-content: center;
-        align-items: center;
-        width: ${iconContainerSize.toString()}px;
-        height: ${iconContainerSize.toString()}px;
-        border-radius: ${(iconContainerSize / 2).toString()}px;
         top: 50%;
         left: 50%;
         margin-top: ${(-iconContainerSize / 2).toString()}px;
         margin-left: ${(-iconContainerSize / 2).toString()}px;
       `}>
-      <FontAwesome5Icon name="check" color="white" size={30} />
-    </View>
+      <FontAwesome5Icon name="check" color="white" size={iconSize} />
+    </IconContainer>
   );
 });
 
-// const BgImageAddButton = React.memo(({style = {}}) => {
-//   const {
-//     layout: {width, height},
-//   } = useTheme();
-//   const aspectRatio = useMemo(() => width / height, [width, height]);
-//   return (
-//     <ItemContainer style={style}>
-//       <View
-//         style={css`
-//           justify-content: center;
-//           align-items: center;
-//           background-color: orange;
-//         `}>
-//         <Text>1</Text>
-//       </View>
-//     </ItemContainer>
-//   )
-// });
+const BgImageAddButton = React.memo(({style = {}}) => {
+  const {
+    icon: {
+      size: {default: iconSize},
+    },
+    border: {lightGray: lightGrayBorder},
+  } = useTheme();
+  return (
+    <ItemContainer style={style}>
+      <View
+        style={css`
+          justify-content: center;
+          align-items: center;
+          flex: 1;
+          border-radius: 10px;
+          ${lightGrayBorder('top', 'bottom', 'right', 'left')};
+          border-width: 1.5px;
+        `}>
+        <IconContainer
+          style={css`
+            background-color: white;
+          `}>
+          <FontAwesome5Icon name="plus" color="orange" size={iconSize} />
+        </IconContainer>
+      </View>
+    </ItemContainer>
+  );
+});

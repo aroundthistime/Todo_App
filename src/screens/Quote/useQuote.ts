@@ -29,7 +29,7 @@ export const useQuote = () => {
   };
   const closeQuoteFor24Hours = () => {
     dispatch(preventQuoteTill24Hours());
-    showToast('24시간동안 명언을 보지 않습니다');
+    showToast('24시간동안 팝업을 보지 않습니다');
     closeQuote();
   };
   return {showQuote, closeQuote, closeQuoteFor24Hours};
