@@ -8,7 +8,7 @@
  * @format
  */
 
-import React, {Suspense} from 'react';
+import React from 'react';
 import {LogBox, SafeAreaView} from 'react-native';
 import Loader from './src/components/Loader/Loader';
 import {useQuote} from './src/screens/Quote/useQuote';
@@ -25,12 +25,10 @@ const App = () => {
   return (
     <SafeAreaView style={{flex: 1}}>
       {showQuote ? (
-        <Suspense fallback={<Loader />}>
-          <QuoteScreen
-            closeQuote={closeQuote}
-            closeQuoteFor24Hours={closeQuoteFor24Hours}
-          />
-        </Suspense>
+        <QuoteScreen
+          closeQuote={closeQuote}
+          closeQuoteFor24Hours={closeQuoteFor24Hours}
+        />
       ) : (
         <RootNavigation />
       )}

@@ -17,15 +17,13 @@ type ReturnType = {
   images: BgImageObj[];
   loading: boolean;
   selectImage: SelectImageFunction;
+  refresh: () => void;
 };
 
 export const useBgImageSelectionScreen = (): ReturnType => {
   const currentBgImage = useSelector(bgImageSelector);
   const dispatch = useDispatch();
-  const selectImage = useCallback(
-    (image: BgImage) => dispatch(changeBgImage(image)),
-    [dispatch],
-  );
+  const selectImage = (image: BgImage) => dispatch(changeBgImage(image));
   const [images, setImages] = useState<BgImageObj[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -33,14 +31,19 @@ export const useBgImageSelectionScreen = (): ReturnType => {
     return dirItem.isFile() && extractFileExtension(dirItem.name) === '.jpg';
   }, []);
 
-  const getImages = useCallback(async () => {
-    const result: BgImageObj[] = range(1, 8).map(n => {
+  const getDefaultImages = useCallback(() => {
+    return range(1, 8).map(n => {
+      //기본 제공 이미지들
       return {
         isCustom: false,
         isSelected: currentBgImage === n,
         path: n,
       };
     });
+  }, [currentBgImage]);
+
+  const getImages = useCallback(async () => {
+    const result: BgImageObj[] = getDefaultImages();
     await RNFS.readDir(RNFS.DocumentDirectoryPath).then(items => {
       items.forEach(item => {
         if (isBgImage(item)) {
@@ -54,7 +57,7 @@ export const useBgImageSelectionScreen = (): ReturnType => {
     });
     setLoading(false);
     setImages(result);
-  }, [currentBgImage, isBgImage]);
+  }, [currentBgImage, getDefaultImages, isBgImage]);
 
   useEffect(() => {
     getImages();
@@ -64,5 +67,6 @@ export const useBgImageSelectionScreen = (): ReturnType => {
     images,
     loading,
     selectImage,
+    refresh: getImages,
   };
 };

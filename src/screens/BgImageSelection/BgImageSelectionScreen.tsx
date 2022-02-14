@@ -4,12 +4,11 @@ import {BgImages} from './styled';
 import Loader from '../../components/Loader/Loader';
 
 const BgImageSeletionScreen = () => {
-  const {images, loading, selectImage} = useBgImageSelectionScreen();
-  console.log(images);
+  const {images, loading, selectImage, refresh} = useBgImageSelectionScreen();
   return loading ? (
     <Loader />
   ) : (
-    <BgImages images={images} selectImage={selectImage} />
+    <BgImages images={images} selectImage={selectImage} refresh={refresh} />
   );
 };
 
