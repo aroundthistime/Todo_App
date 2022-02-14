@@ -132,7 +132,7 @@ Calender.DateCells = React.memo(
         <Calender.DateCell
           date={date}
           isSelected={isSelected}
-          onPress={isSelected ? undefined : () => setSelectedDate(date)}
+          onPress={isSelected ? () => 1 : () => setSelectedDate(date)}
         />,
       );
     }

@@ -10,7 +10,6 @@
 
 import React from 'react';
 import {LogBox, SafeAreaView} from 'react-native';
-import Loader from './src/components/Loader/Loader';
 import {useQuote} from './src/screens/Quote/useQuote';
 import RootNavigation from './src/navigations/RootNavigation';
 import QuoteScreen from './src/screens/Quote/QuoteScreen';
